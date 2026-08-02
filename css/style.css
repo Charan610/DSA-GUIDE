@@ -867,6 +867,29 @@ a:hover {
   }
 }
 
+/* Footer */
+.app-footer {
+  margin-top: auto;
+  padding: 2rem 0 1rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.instagram-link {
+  color: var(--accent-violet);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color var(--transition-fast);
+}
+.instagram-link:hover {
+  color: var(--accent-cyan);
+  text-decoration: underline;
+}
+
 @media (max-width: 600px) {
   #app-header {
     padding: 0 1rem;
@@ -888,3 +911,4 @@ a:hover {
     justify-content: space-between;
   }
 }
+
