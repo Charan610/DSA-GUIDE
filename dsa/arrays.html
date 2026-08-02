@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arrays & Dynamic Arrays - DSA Guide</title>
+  <meta name="description" content="Learn Arrays & Dynamic Arrays with interactive memory visualization, space-time complexity breakdowns, and common implementation pitfall alerts.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Navigation">☰</button>
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon">&lt;/&gt;</div>
+        <span class="brand-text">DSA Guide</span>
+      </a>
+    </div>
+    
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="sidebar-search" class="search-input" placeholder="Search topics..." aria-label="Search topics">
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="app-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Data Structures & Algorithms</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item" data-topic-id="arrays">
+            <a href="arrays.html">
+              <span>Arrays & Dynamic Arrays</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="linked-list">
+            <a href="linked-list.html">
+              <span>Linked List</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="stacks-queues">
+            <a href="stacks-queues.html">
+              <span>Stacks & Queues</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="binary-search">
+            <a href="binary-search.html">
+              <span>Binary Search</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="sorting">
+            <a href="sorting.html">
+              <span>Bubble Sort & Fundamentals</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Web Development</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>DOM & Event Loop <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>Async JS & Promises <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Core CSE</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>Operating Systems <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>System Design Basics <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="progress-widget">
+        <div class="progress-label">
+          <span>Overall Mastery</span>
+          <span id="progress-text">0 of 5 Completed</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Topic Content -->
+    <main id="main-content">
+      <div class="topic-header">
+        <h1>Arrays & Dynamic Arrays</h1>
+        <div class="topic-header-meta">
+          <p>An array is a contiguous block of memory storing elements of the same type under sequential numeric indices. Because memory locations are adjacent, any element can be retrieved instantly in O(1) time using base address mathematical calculation.</p>
+          <button id="mark-complete-btn" class="btn btn-complete" data-topic-id="arrays">
+            <span>Mark as Complete</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Complexity Box -->
+      <div class="complexity-box">
+        <div class="complexity-item">
+          <span class="complexity-label">Random Access</span>
+          <span class="complexity-val">O(1)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Insert / Delete</span>
+          <span class="complexity-val">O(n)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Search (Unsorted)</span>
+          <span class="complexity-val">O(n)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Space Complexity</span>
+          <span class="complexity-val space">O(n)</span>
+        </div>
+      </div>
+
+      <!-- Visualizer Section -->
+      <div class="visualizer-card">
+        <div class="visualizer-header">
+          <div class="visualizer-title">
+            <span>Interactive Contiguous Memory Demo</span>
+            <span class="visualizer-badge">Live Visualizer</span>
+          </div>
+        </div>
+
+        <div class="visualizer-stage" id="array-stage"></div>
+
+        <div id="array-log" class="visualizer-log">Ready. Perform operations below to see contiguous shifts.</div>
+
+        <div class="visualizer-controls">
+          <div class="control-group">
+            <label for="arr-idx-input" style="font-size:0.85rem; color:var(--text-muted);">Index:</label>
+            <input type="number" id="arr-idx-input" class="control-input" value="1" min="0" max="10">
+            <label for="arr-val-input" style="font-size:0.85rem; color:var(--text-muted);">Value:</label>
+            <input type="number" id="arr-val-input" class="control-input" value="99" min="1" max="999">
+          </div>
+          <div class="control-group">
+            <button id="arr-insert-btn" class="btn btn-secondary">Insert At Index</button>
+            <button id="arr-delete-btn" class="btn btn-secondary">Delete At Index</button>
+            <button id="arr-search-btn" class="btn btn-primary">Search Value</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible Pseudocode Panel -->
+      <div class="collapsible-card">
+        <div class="collapsible-header">
+          <div class="collapsible-title">
+            <span>📄 Standard Array Operations Pseudocode</span>
+          </div>
+          <span class="chevron-icon">▼</span>
+        </div>
+        <div class="collapsible-content">
+          <pre class="code-block">
+<span class="code-comment">// Access element by index</span>
+<span class="code-keyword">function</span> <span class="code-function">getElement</span>(arr, index):
+    <span class="code-keyword">if</span> index < <span class="code-number">0</span> <span class="code-keyword">or</span> index >= arr.length:
+        <span class="code-keyword">throw</span> IndexOutOfBoundsException
+    <span class="code-keyword">return</span> arr[index] <span class="code-comment">// O(1) time calculation: base_addr + (index * element_size)</span>
+
+<span class="code-comment">// Insert element at specific index</span>
+<span class="code-keyword">function</span> <span class="code-function">insertAtIndex</span>(arr, index, element):
+    <span class="code-keyword">for</span> i <span class="code-keyword">from</span> arr.length - <span class="code-number">1</span> <span class="code-keyword">down to</span> index:
+        arr[i + <span class="code-number">1</span>] = arr[i] <span class="code-comment">// Shift elements to the right</span>
+    arr[index] = element
+</pre>
+        </div>
+      </div>
+
+      <!-- Common Mistakes Section -->
+      <div class="info-section">
+        <h3>Common Mistakes & Gotchas</h3>
+        <ul class="mistakes-list">
+          <li><strong>Off-by-one errors:</strong> Attempting to access <code>arr[arr.length]</code> instead of <code>arr[arr.length - 1]</code> causes out-of-bounds exceptions.</li>
+          <li><strong>Assuming O(1) insertions:</strong> Inserting at the beginning or middle of an array requires shifting trailing elements right, making it an <code>O(n)</code> operation.</li>
+          <li><strong>Ignoring dynamic resizing overhead:</strong> When dynamic arrays reach capacity, reallocation creates a new array of double size and copies elements over, yielding <code>O(n)</code> worst-case resize time (amortized O(1)).</li>
+        </ul>
+      </div>
+
+      <!-- Practice Question Box -->
+      <div class="info-section">
+        <h3>Practice Challenge</h3>
+        <div class="question-box">
+          <div class="question-text">
+            <strong>Q:</strong> Given an array <code>[10, 20, 30, 40]</code>, what is the exact time complexity of deleting the element at index 0 versus index 3, and why?
+          </div>
+          <button class="btn btn-secondary toggle-answer-btn">Show Answer</button>
+          <div class="answer-content">
+            <p><strong>Answer:</strong></p>
+            <p>Deleting index 0 takes <strong>O(n) time</strong> because all remaining <code>n-1</code> elements must be shifted one position left to keep memory contiguous.</p>
+            <p>Deleting index 3 (the last element) takes <strong>O(1) time</strong> because no remaining elements need shifting.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/visualizer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.DSAVisualizers.initArrayDemo('array-stage');
+    });
+  </script>
+</body>
+</html>

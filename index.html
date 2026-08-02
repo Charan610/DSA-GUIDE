@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Guide - Master Data Structures & Algorithms Visually</title>
+  <meta name="description" content="A visual, interactive guide to Data Structures, Algorithms, Web Development, and Core Computer Science topics.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Sticky Top Header Bar -->
+  <header id="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Navigation">
+        ☰
+      </button>
+      <a href="index.html" class="brand-logo">
+        <div class="brand-icon">&lt;/&gt;</div>
+        <span class="brand-text">DSA Guide</span>
+      </a>
+    </div>
+    
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="sidebar-search" class="search-input" placeholder="Search topics (e.g. search, sort, array)..." aria-label="Search topics">
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar Navigation -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="app-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Data Structures & Algorithms</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item" data-topic-id="arrays">
+            <a href="dsa/arrays.html">
+              <span>Arrays & Dynamic Arrays</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="linked-list">
+            <a href="dsa/linked-list.html">
+              <span>Linked List</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="stacks-queues">
+            <a href="dsa/stacks-queues.html">
+              <span>Stacks & Queues</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="binary-search">
+            <a href="dsa/binary-search.html">
+              <span>Binary Search</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="sorting">
+            <a href="dsa/sorting.html">
+              <span>Bubble Sort & Fundamentals</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Web Development</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>DOM & Event Loop <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>Async JS & Promises <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Core CSE</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>Operating Systems <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>System Design Basics <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="progress-widget">
+        <div class="progress-label">
+          <span>Overall Mastery</span>
+          <span id="progress-text">0 of 5 Completed</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <h1 class="hero-title">DSA Guide</h1>
+        <p class="hero-pitch">A visual guide to DSA, Web Dev, and Core CSE. Master essential computer science concepts through interactive step-by-step visualizers and practical insights.</p>
+      </section>
+
+      <!-- Dynamic Continue Section -->
+      <div id="continue-section"></div>
+
+      <!-- Topics Grid Section -->
+      <section>
+        <div class="section-header">
+          <h2>Core DSA Topics</h2>
+        </div>
+
+        <div class="cards-grid">
+          <!-- Topic Card 1 -->
+          <div class="topic-card" data-topic-id="arrays">
+            <div>
+              <div class="card-top">
+                <div class="card-icon">[ ]</div>
+                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
+              </div>
+              <h3>Arrays & Dynamic Arrays</h3>
+              <p>Contiguous memory storage offering O(1) random index access and dynamic scaling.</p>
+              <div class="complexity-tag-group">
+                <span class="complexity-tag">Access: O(1)</span>
+                <span class="complexity-tag">Search: O(n)</span>
+                <span class="complexity-tag space">Space: O(n)</span>
+              </div>
+            </div>
+            <a href="dsa/arrays.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          </div>
+
+          <!-- Topic Card 2 -->
+          <div class="topic-card" data-topic-id="linked-list">
+            <div>
+              <div class="card-top">
+                <div class="card-icon">🔗</div>
+                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
+              </div>
+              <h3>Linked List</h3>
+              <p>Linear node collection connected via memory pointers for efficient Head O(1) insertions.</p>
+              <div class="complexity-tag-group">
+                <span class="complexity-tag">Insert Head: O(1)</span>
+                <span class="complexity-tag">Access: O(n)</span>
+                <span class="complexity-tag space">Space: O(n)</span>
+              </div>
+            </div>
+            <a href="dsa/linked-list.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          </div>
+
+          <!-- Topic Card 3 -->
+          <div class="topic-card" data-topic-id="stacks-queues">
+            <div>
+              <div class="card-top">
+                <div class="card-icon">🥞</div>
+                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
+              </div>
+              <h3>Stacks & Queues</h3>
+              <p>Abstract linear data structures following LIFO (Stack) and FIFO (Queue) access rules.</p>
+              <div class="complexity-tag-group">
+                <span class="complexity-tag">Push/Pop: O(1)</span>
+                <span class="complexity-tag">Enq/Deq: O(1)</span>
+                <span class="complexity-tag space">Space: O(n)</span>
+              </div>
+            </div>
+            <a href="dsa/stacks-queues.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          </div>
+
+          <!-- Topic Card 4 -->
+          <div class="topic-card" data-topic-id="binary-search">
+            <div>
+              <div class="card-top">
+                <div class="card-icon">🎯</div>
+                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
+              </div>
+              <h3>Binary Search</h3>
+              <p>Divide-and-conquer algorithm that halves the search range on sorted arrays every step.</p>
+              <div class="complexity-tag-group">
+                <span class="complexity-tag">Time: O(log n)</span>
+                <span class="complexity-tag space">Space: O(1)</span>
+              </div>
+            </div>
+            <a href="dsa/binary-search.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          </div>
+
+          <!-- Topic Card 5 -->
+          <div class="topic-card" data-topic-id="sorting">
+            <div>
+              <div class="card-top">
+                <div class="card-icon">📊</div>
+                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
+              </div>
+              <h3>Bubble Sort & Fundamentals</h3>
+              <p>Classic comparison-based sorting algorithm with animated bar chart comparisons and swaps.</p>
+              <div class="complexity-tag-group">
+                <span class="complexity-tag">Time: O(n²)</span>
+                <span class="complexity-tag space">Space: O(1)</span>
+              </div>
+            </div>
+            <a href="dsa/sorting.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Coming Soon Modules Section -->
+      <section>
+        <div class="section-header">
+          <h2>Upcoming Modules</h2>
+        </div>
+        <div class="cards-grid">
+          <div class="topic-card" style="opacity: 0.7;">
+            <div>
+              <div class="card-top">
+                <div class="card-icon">🌐</div>
+                <span class="badge-coming-soon">Coming Soon</span>
+              </div>
+              <h3>Web Dev Deep Dives</h3>
+              <p>Event loop, DOM rendering pipeline, async patterns, and browser runtime mechanics.</p>
+            </div>
+            <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">Locked</button>
+          </div>
+
+          <div class="topic-card" style="opacity: 0.7;">
+            <div>
+              <div class="card-top">
+                <div class="card-icon">💻</div>
+                <span class="badge-coming-soon">Coming Soon</span>
+              </div>
+              <h3>Core Computer Science</h3>
+              <p>Process management, virtual memory, TCP/IP networking, and foundational System Design.</p>
+            </div>
+            <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">Locked</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

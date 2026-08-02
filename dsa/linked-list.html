@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linked List - DSA Guide</title>
+  <meta name="description" content="Master Singly Linked Lists with node pointer visualizer, insertion and deletion time complexities, and interactive practice challenges.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Navigation">☰</button>
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon">&lt;/&gt;</div>
+        <span class="brand-text">DSA Guide</span>
+      </a>
+    </div>
+    
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="sidebar-search" class="search-input" placeholder="Search topics..." aria-label="Search topics">
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="app-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Data Structures & Algorithms</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item" data-topic-id="arrays">
+            <a href="arrays.html">
+              <span>Arrays & Dynamic Arrays</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="linked-list">
+            <a href="linked-list.html">
+              <span>Linked List</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="stacks-queues">
+            <a href="stacks-queues.html">
+              <span>Stacks & Queues</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="binary-search">
+            <a href="binary-search.html">
+              <span>Binary Search</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="sorting">
+            <a href="sorting.html">
+              <span>Bubble Sort & Fundamentals</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Web Development</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>DOM & Event Loop <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>Async JS & Promises <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Core CSE</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>Operating Systems <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>System Design Basics <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="progress-widget">
+        <div class="progress-label">
+          <span>Overall Mastery</span>
+          <span id="progress-text">0 of 5 Completed</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <div class="topic-header">
+        <h1>Linked List</h1>
+        <div class="topic-header-meta">
+          <p>A Linked List is a linear data structure where elements (nodes) are stored dynamically in memory. Each node contains a data value and a pointer (reference) to the next node in the sequence, allowing fast O(1) insertions at the head without memory shifting.</p>
+          <button id="mark-complete-btn" class="btn btn-complete" data-topic-id="linked-list">
+            <span>Mark as Complete</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Complexity Box -->
+      <div class="complexity-box">
+        <div class="complexity-item">
+          <span class="complexity-label">Insert at Head</span>
+          <span class="complexity-val">O(1)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Delete Head</span>
+          <span class="complexity-val">O(1)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Search / Traversal</span>
+          <span class="complexity-val">O(n)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Space Complexity</span>
+          <span class="complexity-val space">O(n)</span>
+        </div>
+      </div>
+
+      <!-- Visualizer Section -->
+      <div class="visualizer-card">
+        <div class="visualizer-header">
+          <div class="visualizer-title">
+            <span>Node Pointer Chain Visualizer</span>
+            <span class="visualizer-badge">Live Visualizer</span>
+          </div>
+        </div>
+
+        <div class="visualizer-stage" id="ll-stage"></div>
+
+        <div id="ll-log" class="visualizer-log">Ready. Perform node operations below.</div>
+
+        <div class="visualizer-controls">
+          <div class="control-group">
+            <label for="ll-val-input" style="font-size:0.85rem; color:var(--text-muted);">Node Value:</label>
+            <input type="number" id="ll-val-input" class="control-input" value="99" min="1" max="999">
+          </div>
+          <div class="control-group">
+            <button id="ll-insert-head-btn" class="btn btn-primary">Insert Head</button>
+            <button id="ll-insert-tail-btn" class="btn btn-secondary">Insert Tail</button>
+            <button id="ll-delete-head-btn" class="btn btn-secondary">Delete Head</button>
+            <button id="ll-search-btn" class="btn btn-secondary">Search Node</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible Pseudocode Panel -->
+      <div class="collapsible-card">
+        <div class="collapsible-header">
+          <div class="collapsible-title">
+            <span>📄 Linked List Node & Traversal Pseudocode</span>
+          </div>
+          <span class="chevron-icon">▼</span>
+        </div>
+        <div class="collapsible-content">
+          <pre class="code-block">
+<span class="code-keyword">class</span> <span class="code-function">Node</span>:
+    <span class="code-keyword">constructor</span>(value):
+        <span class="code-keyword">this</span>.data = value
+        <span class="code-keyword">this</span>.next = <span class="code-keyword">null</span>
+
+<span class="code-comment">// Insert node at head O(1)</span>
+<span class="code-keyword">function</span> <span class="code-function">insertHead</span>(head, value):
+    newNode = <span class="code-keyword">new</span> Node(value)
+    newNode.next = head
+    <span class="code-keyword">return</span> newNode <span class="code-comment">// New head</span>
+
+<span class="code-comment">// Linear Search O(n)</span>
+<span class="code-keyword">function</span> <span class="code-function">search</span>(head, target):
+    current = head
+    <span class="code-keyword">while</span> current != <span class="code-keyword">null</span>:
+        <span class="code-keyword">if</span> current.data == target:
+            <span class="code-keyword">return</span> <span class="code-keyword">true</span>
+        current = current.next
+    <span class="code-keyword">return</span> <span class="code-keyword">false</span>
+</pre>
+        </div>
+      </div>
+
+      <!-- Common Mistakes Section -->
+      <div class="info-section">
+        <h3>Common Mistakes & Gotchas</h3>
+        <ul class="mistakes-list">
+          <li><strong>Losing the Head reference:</strong> Overwriting the <code>head</code> pointer without saving a reference will orphan the rest of the list, causing memory leaks in unmanaged languages.</li>
+          <li><strong>Null pointer dereferencing:</strong> Attempting to access <code>curr.next.data</code> when <code>curr.next</code> is <code>null</code> causes runtime crashes. Always check <code>curr != null</code> first.</li>
+          <li><strong>Confusing singly vs doubly linked lists:</strong> Singly linked list nodes cannot traverse backwards because nodes only store forward <code>next</code> references.</li>
+        </ul>
+      </div>
+
+      <!-- Practice Question Box -->
+      <div class="info-section">
+        <h3>Practice Challenge</h3>
+        <div class="question-box">
+          <div class="question-text">
+            <strong>Q:</strong> How can you reverse a singly linked list iteratively in a single pass? What pointers do you need?
+          </div>
+          <button class="btn btn-secondary toggle-answer-btn">Show Answer</button>
+          <div class="answer-content">
+            <p><strong>Answer:</strong></p>
+            <p>You need 3 pointers: <code>prev = null</code>, <code>current = head</code>, and <code>next = null</code>.</p>
+            <p>During iteration: store <code>next = current.next</code>, flip pointer <code>current.next = prev</code>, advance <code>prev = current</code>, and move forward <code>current = next</code>. Takes <strong>O(n) time</strong> and <strong>O(1) auxiliary space</strong>.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/visualizer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.DSAVisualizers.initLinkedListDemo('ll-stage');
+    });
+  </script>
+</body>
+</html>

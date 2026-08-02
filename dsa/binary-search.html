@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Search - DSA Guide</title>
+  <meta name="description" content="Master Binary Search algorithm with an interactive step-by-step low/mid/high search window visualizer, log scale complexity breakdown, and common bugs.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Navigation">☰</button>
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon">&lt;/&gt;</div>
+        <span class="brand-text">DSA Guide</span>
+      </a>
+    </div>
+    
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="sidebar-search" class="search-input" placeholder="Search topics..." aria-label="Search topics">
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="app-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Data Structures & Algorithms</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item" data-topic-id="arrays">
+            <a href="arrays.html">
+              <span>Arrays & Dynamic Arrays</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="linked-list">
+            <a href="linked-list.html">
+              <span>Linked List</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="stacks-queues">
+            <a href="stacks-queues.html">
+              <span>Stacks & Queues</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="binary-search">
+            <a href="binary-search.html">
+              <span>Binary Search</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="sorting">
+            <a href="sorting.html">
+              <span>Bubble Sort & Fundamentals</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Web Development</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>DOM & Event Loop <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>Async JS & Promises <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Core CSE</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>Operating Systems <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>System Design Basics <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="progress-widget">
+        <div class="progress-label">
+          <span>Overall Mastery</span>
+          <span id="progress-text">0 of 5 Completed</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <div class="topic-header">
+        <h1>Binary Search</h1>
+        <div class="topic-header-meta">
+          <p>Binary Search is an efficient divide-and-conquer algorithm for finding an item in a sorted array. By repeatedly halving the search window based on comparing the middle element with the target, it reduces search space exponentially, finding any element among 1,000,000 items in 20 steps or fewer.</p>
+          <button id="mark-complete-btn" class="btn btn-complete" data-topic-id="binary-search">
+            <span>Mark as Complete</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Complexity Box -->
+      <div class="complexity-box">
+        <div class="complexity-item">
+          <span class="complexity-label">Best Time</span>
+          <span class="complexity-val">O(1)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Average / Worst</span>
+          <span class="complexity-val">O(log n)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Prerequisite</span>
+          <span class="complexity-val" style="color:var(--warning)">Sorted Array</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Space Complexity</span>
+          <span class="complexity-val space">O(1) Iterative</span>
+        </div>
+      </div>
+
+      <!-- Visualizer Section -->
+      <div class="visualizer-card">
+        <div class="visualizer-header">
+          <div class="visualizer-title">
+            <span>Step-Through Window Visualizer</span>
+            <span class="visualizer-badge">Live Visualizer</span>
+          </div>
+        </div>
+
+        <div class="visualizer-stage" id="bs-stage"></div>
+
+        <div id="bs-log" class="visualizer-log">Ready. Click Next Step or set a custom target below.</div>
+
+        <div class="visualizer-controls">
+          <div class="control-group">
+            <label for="bs-target-input" style="font-size:0.85rem; color:var(--text-muted);">Target Value:</label>
+            <input type="number" id="bs-target-input" class="control-input" value="23">
+            <button id="bs-set-target-btn" class="btn btn-secondary" style="padding:0.4rem 0.75rem;">Set</button>
+          </div>
+          <div class="control-group">
+            <button id="bs-prev-btn" class="btn btn-secondary">← Prev Step</button>
+            <button id="bs-next-btn" class="btn btn-primary">Next Step →</button>
+            <button id="bs-reset-btn" class="btn btn-secondary">Reset ↺</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible Pseudocode Panel -->
+      <div class="collapsible-card">
+        <div class="collapsible-header">
+          <div class="collapsible-title">
+            <span>📄 Iterative Binary Search Pseudocode</span>
+          </div>
+          <span class="chevron-icon">▼</span>
+        </div>
+        <div class="collapsible-content">
+          <pre class="code-block">
+<span class="code-keyword">function</span> <span class="code-function">binarySearch</span>(arr, target):
+    low = <span class="code-number">0</span>
+    high = arr.length - <span class="code-number">1</span>
+
+    <span class="code-keyword">while</span> low <= high:
+        <span class="code-comment">// Avoid integer overflow in languages with bounded 32-bit ints:</span>
+        mid = low + Math.floor((high - low) / <span class="code-number">2</span>)
+
+        <span class="code-keyword">if</span> arr[mid] == target:
+            <span class="code-keyword">return</span> mid <span class="code-comment">// Target found!</span>
+        <span class="code-keyword">else if</span> arr[mid] < target:
+            low = mid + <span class="code-number">1</span> <span class="code-comment">// Target is in right half</span>
+        <span class="code-keyword">else</span>:
+            high = mid - <span class="code-number">1</span> <span class="code-comment">// Target is in left half</span>
+
+    <span class="code-keyword">return</span> -<span class="code-number">1</span> <span class="code-comment">// Target not found</span>
+</pre>
+        </div>
+      </div>
+
+      <!-- Common Mistakes Section -->
+      <div class="info-section">
+        <h3>Common Mistakes & Gotchas</h3>
+        <ul class="mistakes-list">
+          <li><strong>Using Binary Search on unsorted input:</strong> Binary Search assumes monotonic order. If the input array is unsorted, the decision to discard half the array is invalid and returns incorrect results.</li>
+          <li><strong>Integer overflow in mid calculation:</strong> Writing <code>mid = (low + high) / 2</code> can overflow maximum integer limits for huge arrays in languages like C++/Java. Use <code>low + (high - low) / 2</code> instead.</li>
+          <li><strong>Infinite loops with boundary updates:</strong> Setting <code>low = mid</code> or <code>high = mid</code> instead of <code>mid + 1</code> / <code>mid - 1</code> leads to infinite loops when <code>low</code> and <code>high</code> neighbor each other.</li>
+        </ul>
+      </div>
+
+      <!-- Practice Question Box -->
+      <div class="info-section">
+        <h3>Practice Challenge</h3>
+        <div class="question-box">
+          <div class="question-text">
+            <strong>Q:</strong> Given a sorted array of 1,024 elements, what is the maximum number of comparisons Binary Search will make in the worst-case scenario?
+          </div>
+          <button class="btn btn-secondary toggle-answer-btn">Show Answer</button>
+          <div class="answer-content">
+            <p><strong>Answer:</strong></p>
+            <p><strong>11 comparisons maximum</strong> (since \( \lceil \log_2(1024) \rceil = 10 \), plus 1 final check for 1-element remaining). Halving 1024 takes: 1024 ➔ 512 ➔ 256 ➔ 128 ➔ 64 ➔ 32 ➔ 16 ➔ 8 ➔ 4 ➔ 2 ➔ 1.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/visualizer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.DSAVisualizers.initBinarySearch('bs-stage');
+    });
+  </script>
+</body>
+</html>

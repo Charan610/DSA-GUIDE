@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bubble Sort & Sorting Fundamentals - DSA Guide</title>
+  <meta name="description" content="Learn Bubble Sort with animated bar-chart visualizer, playback controls, adjustable animation speeds, time complexity breakdown, and common pitfalls.">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="app-header">
+    <div class="header-left">
+      <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Navigation">☰</button>
+      <a href="../index.html" class="brand-logo">
+        <div class="brand-icon">&lt;/&gt;</div>
+        <span class="brand-text">DSA Guide</span>
+      </a>
+    </div>
+    
+    <div class="header-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="sidebar-search" class="search-input" placeholder="Search topics..." aria-label="Search topics">
+    </div>
+  </header>
+
+  <div class="layout-container">
+    <!-- Sidebar -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    <aside id="app-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-title">Data Structures & Algorithms</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item" data-topic-id="arrays">
+            <a href="arrays.html">
+              <span>Arrays & Dynamic Arrays</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="linked-list">
+            <a href="linked-list.html">
+              <span>Linked List</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="stacks-queues">
+            <a href="stacks-queues.html">
+              <span>Stacks & Queues</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="binary-search">
+            <a href="binary-search.html">
+              <span>Binary Search</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+          <li class="sidebar-nav-item" data-topic-id="sorting">
+            <a href="sorting.html">
+              <span>Bubble Sort & Fundamentals</span>
+              <span class="check-icon">✓</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Web Development</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>DOM & Event Loop <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>Async JS & Promises <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-title">Core CSE</div>
+        <ul class="sidebar-nav">
+          <li class="sidebar-nav-item disabled">
+            <span>Operating Systems <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+          <li class="sidebar-nav-item disabled">
+            <span>System Design Basics <span class="badge-coming-soon">Coming Soon</span></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="progress-widget">
+        <div class="progress-label">
+          <span>Overall Mastery</span>
+          <span id="progress-text">0 of 5 Completed</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main id="main-content">
+      <div class="topic-header">
+        <h1>Bubble Sort & Fundamentals</h1>
+        <div class="topic-header-meta">
+          <p>Bubble Sort is a foundational comparison-based sorting algorithm. It repeatedly steps through the array, compares adjacent elements, and swaps them if they are in the wrong order. Larger values "bubble up" to the end of the array on each pass.</p>
+          <button id="mark-complete-btn" class="btn btn-complete" data-topic-id="sorting">
+            <span>Mark as Complete</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Complexity Box -->
+      <div class="complexity-box">
+        <div class="complexity-item">
+          <span class="complexity-label">Best Time (Optimized)</span>
+          <span class="complexity-val">O(n)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Average / Worst</span>
+          <span class="complexity-val">O(n²)</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Algorithm Property</span>
+          <span class="complexity-val" style="color:var(--accent-cyan)">Stable & In-Place</span>
+        </div>
+        <div class="complexity-item">
+          <span class="complexity-label">Space Complexity</span>
+          <span class="complexity-val space">O(1)</span>
+        </div>
+      </div>
+
+      <!-- Visualizer Section -->
+      <div class="visualizer-card">
+        <div class="visualizer-header">
+          <div class="visualizer-title">
+            <span>Animated Bar-Chart Visualizer</span>
+            <span class="visualizer-badge">Live Visualizer</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <label for="sort-speed-slider" style="font-size:0.8rem; color:var(--text-muted);">Speed:</label>
+            <input type="range" id="sort-speed-slider" min="50" max="1000" value="650" style="width:100px;">
+          </div>
+        </div>
+
+        <div class="visualizer-stage" id="sort-stage"></div>
+
+        <div id="sort-log" class="visualizer-log">Ready. Click Play or Step Next to start sorting.</div>
+
+        <div class="visualizer-controls">
+          <div class="control-group">
+            <button id="sort-play-btn" class="btn btn-primary">Play ▶</button>
+            <button id="sort-prev-btn" class="btn btn-secondary">← Step</button>
+            <button id="sort-next-btn" class="btn btn-secondary">Step →</button>
+          </div>
+          <div class="control-group">
+            <button id="sort-reset-btn" class="btn btn-secondary">Reset Array ↺</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible Pseudocode Panel -->
+      <div class="collapsible-card">
+        <div class="collapsible-header">
+          <div class="collapsible-title">
+            <span>📄 Optimized Bubble Sort Pseudocode</span>
+          </div>
+          <span class="chevron-icon">▼</span>
+        </div>
+        <div class="collapsible-content">
+          <pre class="code-block">
+<span class="code-keyword">function</span> <span class="code-function">bubbleSort</span>(arr):
+    n = arr.length
+
+    <span class="code-keyword">for</span> i <span class="code-keyword">from</span> <span class="code-number">0</span> <span class="code-keyword">to</span> n - <span class="code-number">1</span>:
+        swapped = <span class="code-keyword">false</span>
+
+        <span class="code-comment">// Last i elements are already in place</span>
+        <span class="code-keyword">for</span> j <span class="code-keyword">from</span> <span class="code-number">0</span> <span class="code-keyword">to</span> n - i - <span class="code-number">2</span>:
+            <span class="code-keyword">if</span> arr[j] > arr[j + <span class="code-number">1</span>]:
+                swap(arr[j], arr[j + <span class="code-number">1</span>])
+                swapped = <span class="code-keyword">true</span>
+
+        <span class="code-comment">// If no two elements were swapped in inner loop, array is sorted</span>
+        <span class="code-keyword">if not</span> swapped:
+            <span class="code-keyword">break</span>
+</pre>
+        </div>
+      </div>
+
+      <!-- Common Mistakes Section -->
+      <div class="info-section">
+        <h3>Common Mistakes & Gotchas</h3>
+        <ul class="mistakes-list">
+          <li><strong>Redundant inner loop checks:</strong> Running inner loop up to <code>n - 1</code> every time instead of <code>n - i - 1</code> does unnecessary comparisons on elements that are already sorted at the end.</li>
+          <li><strong>Omitting the early-exit swapped check:</strong> Without tracking whether a swap occurred during a pass, Bubble Sort executes <code>O(n²)</code> comparisons even if the input array is already completely sorted.</li>
+          <li><strong>Confusing stability:</strong> Bubble Sort is stable because equal elements are never swapped past each other (only strictly greater elements <code>arr[j] > arr[j+1]</code> swap).</li>
+        </ul>
+      </div>
+
+      <!-- Practice Question Box -->
+      <div class="info-section">
+        <h3>Practice Challenge</h3>
+        <div class="question-box">
+          <div class="question-text">
+            <strong>Q:</strong> What makes a sorting algorithm "Stable", and is Bubble Sort stable? Why or why not?
+          </div>
+          <button class="btn btn-secondary toggle-answer-btn">Show Answer</button>
+          <div class="answer-content">
+            <p><strong>Answer:</strong></p>
+            <p>A sorting algorithm is <strong>Stable</strong> if elements with equal keys maintain their original relative order after sorting.</p>
+            <p><strong>Bubble Sort is stable</strong> because elements are only swapped when <code>arr[j] &gt; arr[j+1]</code>. When adjacent elements are equal, no swap takes place, preserving their original order.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/visualizer.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      window.DSAVisualizers.initBubbleSort('sort-stage');
+    });
+  </script>
+</body>
+</html>
