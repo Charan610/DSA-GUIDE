@@ -1,253 +1,673 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DSA Guide - Master Data Structures & Algorithms Visually</title>
-  <meta name="description" content="A visual, interactive guide to Data Structures, Algorithms, Web Development, and Core Computer Science topics.">
+  <title>CSE Career OS — Engineering Laboratory & Technical Blueprint</title>
+  <meta name="description" content="An honest, capability-driven operating system for becoming a world-class software engineer. Skill progression, systems architecture, and engineering telemetry.">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Sticky Top Header Bar -->
-  <header id="app-header">
+  <!-- =========================================================================
+       Top Engineering Rail Header
+       ========================================================================= -->
+  <header id="os-header">
     <div class="header-left">
-      <button id="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle Navigation">
-        ☰
-      </button>
-      <a href="index.html" class="brand-logo">
-        <div class="brand-icon">&lt;/&gt;</div>
-        <span class="brand-text">DSA Guide</span>
+      <a href="#overview" class="brand-wrapper">
+        <div class="brand-glyph">SYS</div>
+        <span class="brand-name">CSE / Career OS <span style="color:var(--text-dim); font-size:0.75rem;">· 2026</span></span>
       </a>
     </div>
-    
-    <div class="header-search">
-      <span class="search-icon">🔍</span>
-      <input type="text" id="sidebar-search" class="search-input" placeholder="Search topics (e.g. search, sort, array)..." aria-label="Search topics">
+
+    <!-- Center Command Palette Trigger -->
+    <div class="header-center">
+      <button id="cmd-trigger-btn" class="cmd-trigger-btn" aria-label="Open Command Palette">
+        <span>⌘ SEARCH BLUEPRINTS & TELEMETRY...</span>
+        <span class="kbd-shortcut">⌘ K</span>
+      </button>
+    </div>
+
+    <!-- Header Right Controls -->
+    <div class="header-right">
+      <div id="header-target-pill" class="header-pill-badge" onclick="window.location.hash = 'overview'">
+        <span class="indicator-dot"></span>
+        <span>TRACK: PRODUCT ENGINEERING</span>
+      </div>
+
+      <button id="focus-mode-header-btn" class="btn-icon-header" title="Launch Focus Session">
+        ⏱
+      </button>
+
+      <button id="theme-toggle-btn" class="btn-icon-header" title="Toggle Theme">
+        ◐
+      </button>
     </div>
   </header>
 
-  <div class="layout-container">
-    <!-- Sidebar Navigation -->
-    <div id="sidebar-overlay" class="sidebar-overlay"></div>
-    <aside id="app-sidebar">
-      <div class="sidebar-section">
-        <div class="sidebar-title">Data Structures & Algorithms</div>
-        <ul class="sidebar-nav">
-          <li class="sidebar-nav-item" data-topic-id="arrays">
-            <a href="dsa/arrays.html">
-              <span>Arrays & Dynamic Arrays</span>
-              <span class="check-icon">✓</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item" data-topic-id="linked-list">
-            <a href="dsa/linked-list.html">
-              <span>Linked List</span>
-              <span class="check-icon">✓</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item" data-topic-id="stacks-queues">
-            <a href="dsa/stacks-queues.html">
-              <span>Stacks & Queues</span>
-              <span class="check-icon">✓</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item" data-topic-id="binary-search">
-            <a href="dsa/binary-search.html">
-              <span>Binary Search</span>
-              <span class="check-icon">✓</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item" data-topic-id="sorting">
-            <a href="dsa/sorting.html">
-              <span>Bubble Sort & Fundamentals</span>
-              <span class="check-icon">✓</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+  <!-- =========================================================================
+       Main Application Shell
+       ========================================================================= -->
+  <div class="os-layout">
 
-      <div class="sidebar-section">
-        <div class="sidebar-title">Web Development</div>
-        <ul class="sidebar-nav">
-          <li class="sidebar-nav-item disabled">
-            <span>DOM & Event Loop <span class="badge-coming-soon">Coming Soon</span></span>
-          </li>
-          <li class="sidebar-nav-item disabled">
-            <span>Async JS & Promises <span class="badge-coming-soon">Coming Soon</span></span>
-          </li>
-        </ul>
-      </div>
+    <!-- Compact Technical Sidebar Rail -->
+    <aside id="os-sidebar">
+      <div class="sidebar-nav-group">
+        <div class="sidebar-label">INDEX / BLUEPRINTS</div>
 
-      <div class="sidebar-section">
-        <div class="sidebar-title">Core CSE</div>
-        <ul class="sidebar-nav">
-          <li class="sidebar-nav-item disabled">
-            <span>Operating Systems <span class="badge-coming-soon">Coming Soon</span></span>
-          </li>
-          <li class="sidebar-nav-item disabled">
-            <span>System Design Basics <span class="badge-coming-soon">Coming Soon</span></span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="progress-widget">
-        <div class="progress-label">
-          <span>Overall Mastery</span>
-          <span id="progress-text">0 of 5 Completed</span>
+        <div class="sidebar-nav-item active" data-view="overview">
+          <span class="sidebar-num">01</span>
+          <span>OVERVIEW</span>
         </div>
-        <div class="progress-bar-bg">
-          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+
+        <div class="sidebar-nav-item" data-view="roadmap">
+          <span class="sidebar-num">02</span>
+          <span>SCHEMATIC</span>
         </div>
+
+        <div class="sidebar-nav-item" data-view="dsa">
+          <span class="sidebar-num">03</span>
+          <span>ALGORITHMS</span>
+        </div>
+
+        <div class="sidebar-nav-item" data-view="corecs">
+          <span class="sidebar-num">04</span>
+          <span>SYSTEMS</span>
+        </div>
+
+        <div class="sidebar-nav-item" data-view="dev">
+          <span class="sidebar-num">05</span>
+          <span>BUILD</span>
+        </div>
+
+        <div class="sidebar-nav-item" data-view="projects">
+          <span class="sidebar-num">06</span>
+          <span>PORTFOLIO</span>
+        </div>
+
+        <div class="sidebar-nav-item" data-view="companies">
+          <span class="sidebar-num">07</span>
+          <span>TRACKS</span>
+        </div>
+
+        <div class="sidebar-nav-item" data-view="mentor">
+          <span class="sidebar-num">08</span>
+          <span>INTEL MENTOR</span>
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <div>OPERATOR: CHARAN</div>
+        <div style="color:var(--status-completed); margin-top:0.25rem;">● SYSTEM ACTIVE</div>
       </div>
     </aside>
 
-    <!-- Main Content Area -->
-    <main id="main-content">
-      <!-- Hero Section -->
-      <section class="hero-section">
-        <h1 class="hero-title">DSA Guide</h1>
-        <p class="hero-pitch">A visual guide to DSA, Web Dev, and Core CSE. Master essential computer science concepts through interactive step-by-step visualizers and practical insights.</p>
+    <!-- =======================================================================
+         Main Operating Canvas
+         ======================================================================= -->
+    <main id="os-main">
+
+      <!-- =====================================================================
+           01 OVERVIEW: EDITORIAL DASHBOARD
+           ===================================================================== -->
+      <section id="view-overview" class="os-view-section active-view">
+        
+        <!-- Editorial Hero Header -->
+        <div class="editorial-hero">
+          <div class="hero-super">CSE / 2026 · CAPABILITY & SYSTEMS OPERATING SYSTEM</div>
+          <h1 class="hero-main-title">Your Engineering Journey</h1>
+          <p style="font-size:1.15rem; color:var(--text-body); max-width:720px;">
+            Build the skills. Build the systems. Build the career. A capability-driven instrument for mastering software engineering, systems design, and algorithmic thinking.
+          </p>
+
+          <!-- Key Metrics Strip -->
+          <div class="hero-meta-strip">
+            <div class="meta-block-item">
+              <span class="meta-block-label">Engineering Readiness</span>
+              <div class="meta-block-val"><span id="stat-readiness-num">74</span><span style="font-size:1rem; color:var(--text-dim);"> / 100</span></div>
+            </div>
+
+            <div class="meta-block-item">
+              <span class="meta-block-label">Career Direction</span>
+              <div class="meta-block-val" style="font-size:1.4rem; color:var(--accent);">Product Engineering</div>
+            </div>
+
+            <div class="meta-block-item">
+              <span class="meta-block-label">Currently Learning</span>
+              <div class="meta-block-val" style="font-size:1.4rem; color:var(--text-main);">Dynamic Programming</div>
+            </div>
+
+            <div class="meta-block-item">
+              <span class="meta-block-label">Active Learning Days</span>
+              <div class="meta-block-val">142 <span style="font-size:1rem; color:var(--text-dim);">/ 365 DAYS</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Measured Achievements Grid -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:2rem;">
+          <div class="panel-title"><span>■ VERIFIED ACHIEVEMENT METRICS</span></div>
+          <span class="font-mono" style="font-size:0.75rem; color:var(--text-dim);">TRACKED ACTIVITY</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:1rem; margin:1rem 0 2.5rem;">
+          <div class="technical-panel" style="padding:1.25rem;">
+            <span class="meta-block-label">DSA Problems</span>
+            <div style="font-family:var(--font-editorial); font-size:1.75rem; font-weight:700; color:var(--text-main); margin-top:0.25rem;">247 <span style="font-size:0.85rem; color:var(--text-dim);">/ 400</span></div>
+          </div>
+          <div class="technical-panel" style="padding:1.25rem;">
+            <span class="meta-block-label">Core CS Topics</span>
+            <div style="font-family:var(--font-editorial); font-size:1.75rem; font-weight:700; color:var(--text-main); margin-top:0.25rem;">68 <span style="font-size:0.85rem; color:var(--text-dim);">/ 100</span></div>
+          </div>
+          <div class="technical-panel" style="padding:1.25rem;">
+            <span class="meta-block-label">Projects Built</span>
+            <div style="font-family:var(--font-editorial); font-size:1.75rem; font-weight:700; color:var(--status-completed); margin-top:0.25rem;">3 <span style="font-size:0.85rem; color:var(--text-dim);">SHIPPED</span></div>
+          </div>
+          <div class="technical-panel" style="padding:1.25rem;">
+            <span class="meta-block-label">Dev Mastery</span>
+            <div style="font-family:var(--font-editorial); font-size:1.75rem; font-weight:700; color:var(--text-main); margin-top:0.25rem;">76% <span style="font-size:0.85rem; color:var(--text-dim);">LEVEL</span></div>
+          </div>
+          <div class="technical-panel" style="padding:1.25rem;">
+            <span class="meta-block-label">Mock Sessions</span>
+            <div style="font-family:var(--font-editorial); font-size:1.75rem; font-weight:700; color:var(--accent); margin-top:0.25rem;">24 <span style="font-size:0.85rem; color:var(--text-dim);">COMPLETED</span></div>
+          </div>
+          <div class="technical-panel" style="padding:1.25rem;">
+            <span class="meta-block-label">Repositories</span>
+            <div style="font-family:var(--font-editorial); font-size:1.75rem; font-weight:700; color:var(--text-main); margin-top:0.25rem;">18 <span style="font-size:0.85rem; color:var(--text-dim);">COMMITS</span></div>
+          </div>
+        </div>
+
+        <!-- Numbered Curriculum Modules Grid -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:2rem;">
+          <div class="panel-title"><span>■ CURRICULUM ARCHITECTURE</span></div>
+          <span class="font-mono" style="font-size:0.75rem; color:var(--text-dim);">6 CORE MODULES</span>
+        </div>
+
+        <div class="numbered-modules-grid">
+          <div class="numbered-module-item" onclick="window.location.hash = 'corecs'">
+            <div>
+              <div class="module-num">01 / FOUNDATION</div>
+              <div class="module-title">C++ · Git · Memory</div>
+              <p class="module-desc">Pointers, dynamic allocation, RAII, move semantics, and STL performance internals.</p>
+            </div>
+            <div class="tag-tech" style="align-self:flex-start;">85% MASTERED</div>
+          </div>
+
+          <div class="numbered-module-item" onclick="window.location.hash = 'dsa'">
+            <div>
+              <div class="module-num">02 / ALGORITHMS</div>
+              <div class="module-title">DSA & Complexity</div>
+              <p class="module-desc">Contiguous arrays, trees, graph traversals, and dynamic programming invariants.</p>
+            </div>
+            <div class="tag-tech" style="align-self:flex-start; color:var(--accent); border-color:var(--accent-border);">ACTIVE FOCUS</div>
+          </div>
+
+          <div class="numbered-module-item" onclick="window.location.hash = 'corecs'">
+            <div>
+              <div class="module-num">03 / SYSTEMS</div>
+              <div class="module-title">OS · DBMS · Networks</div>
+              <p class="module-desc">Process synchronization, virtual memory, ACID transactions, and TCP/IP sockets.</p>
+            </div>
+            <div class="tag-tech" style="align-self:flex-start;">IN PROGRESS</div>
+          </div>
+
+          <div class="numbered-module-item" onclick="window.location.hash = 'dev'">
+            <div>
+              <div class="module-num">04 / BUILD</div>
+              <div class="module-title">Full Stack · Cloud</div>
+              <p class="module-desc">TypeScript, React architecture, Node APIs, PostgreSQL indexing, and Docker containerization.</p>
+            </div>
+            <div class="tag-tech" style="align-self:flex-start;">INTERMEDIATE</div>
+          </div>
+
+          <div class="numbered-module-item" onclick="window.location.hash = 'projects'">
+            <div>
+              <div class="module-num">05 / SHIP</div>
+              <div class="module-title">Projects · Portfolio</div>
+              <p class="module-desc">Distributed task queues, collaborative editors, and vector search engines.</p>
+            </div>
+            <div class="tag-tech" style="align-self:flex-start;">TIER 3 ARCHITECTURE</div>
+          </div>
+
+          <div class="numbered-module-item" onclick="window.location.hash = 'mentor'">
+            <div>
+              <div class="module-num">06 / INTERVIEW</div>
+              <div class="module-title">Design & STAR Prep</div>
+              <p class="module-desc">Live coding communication, system design tradeoffs, and behavioral STAR stories.</p>
+            </div>
+            <div class="tag-tech" style="align-self:flex-start;">DIAGNOSTIC ACTIVE</div>
+          </div>
+        </div>
+
+        <!-- Asymmetric 2-Column: Telemetry + Diagnosis -->
+        <div class="asymmetric-section">
+          
+          <!-- Left Column: Engineering Readiness Telemetry -->
+          <div class="technical-panel">
+            <div class="panel-header">
+              <div class="panel-title"><span>■ ENGINEERING READINESS TELEMETRY</span></div>
+              <span class="tag-tech">MEASURED CAPABILITY SCORE</span>
+            </div>
+            <div id="readiness-bars-container"></div>
+          </div>
+
+          <!-- Right Column: Bottleneck Diagnosis & Next Action -->
+          <div class="technical-panel" style="display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div class="panel-header">
+                <div class="panel-title"><span>■ DIAGNOSTIC ENGINE</span></div>
+                <span class="tag-tech" style="color:var(--status-danger);">BOTTLENECK DETECTED</span>
+              </div>
+              <div id="weakness-diagnosis-container"></div>
+            </div>
+
+            <!-- Smart Next Action Card -->
+            <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--hairline);">
+              <div id="smart-recommendation-card"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Today's Daily Mission Ledger -->
+        <div class="technical-panel" style="margin-bottom:2.5rem;">
+          <div class="panel-header">
+            <div class="panel-title"><span>■ DAILY ENGINEERING MISSIONS</span></div>
+            <div id="mission-header-time" class="tag-tech">2H 30M ALLOCATED</div>
+          </div>
+          <div id="daily-mission-list" class="mission-list"></div>
+        </div>
+
+        <!-- Capability-Based Career Direction Selector -->
+        <div class="technical-panel" style="margin-bottom:2.5rem;">
+          <div class="panel-header">
+            <div class="panel-title"><span>■ CAREER DIRECTION & CAPABILITY LEVEL</span></div>
+            <span class="tag-tech">CUSTOMIZES CURRICULUM EMPHASIS</span>
+          </div>
+
+          <div class="target-selector-grid">
+            <div class="target-card active" data-target-id="track-product">
+              <div class="font-mono" style="font-size:0.75rem; color:var(--accent);">TRACK 01 · ACTIVE</div>
+              <div class="target-track-title" style="font-size:1.15rem; font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">Product Engineering</div>
+              <div class="target-desc">High-scale applications, performance optimization, and reliable user systems.</div>
+            </div>
+
+            <div class="target-card" data-target-id="track-systems">
+              <div class="font-mono" style="font-size:0.75rem; color:var(--text-dim);">TRACK 02</div>
+              <div class="target-track-title" style="font-size:1.15rem; font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">Systems Engineering</div>
+              <div class="target-desc">Low-level OS internals, concurrency models, C++/Rust, and kernel structures.</div>
+            </div>
+
+            <div class="target-card" data-target-id="track-backend">
+              <div class="font-mono" style="font-size:0.75rem; color:var(--text-dim);">TRACK 03</div>
+              <div class="target-track-title" style="font-size:1.15rem; font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">Backend & Distributed</div>
+              <div class="target-desc">High-throughput microservices, database transactions, caching, and message queues.</div>
+            </div>
+
+            <div class="target-card" data-target-id="track-aiml">
+              <div class="font-mono" style="font-size:0.75rem; color:var(--text-dim);">TRACK 04</div>
+              <div class="target-track-title" style="font-size:1.15rem; font-weight:700; color:var(--text-main); margin-bottom:0.25rem;">AI / ML Engineering</div>
+              <div class="target-desc">Vector indexing, RAG systems, model inference pipelines, and algorithmic math.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Capability Levels Reference -->
+        <div class="technical-panel" style="margin-bottom:2.5rem;">
+          <div class="panel-header">
+            <div class="panel-title"><span>■ CAPABILITY PROGRESSION TIERS</span></div>
+            <span class="tag-tech">EVIDENCE-BASED STANDARDS</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; font-family:var(--font-mono); font-size:0.8rem;">
+            <div style="padding:0.75rem; background:var(--bg-base); border:1px solid var(--hairline);">
+              <strong style="color:var(--text-main);">01 FOUNDATION</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">You understand fundamentals: memory layouts, syntax, and basic data structures.</p>
+            </div>
+            <div style="padding:0.75rem; background:var(--bg-base); border:1px solid var(--hairline);">
+              <strong style="color:var(--text-main);">02 BUILD</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">You can independently build, test, and deploy functional web and backend apps.</p>
+            </div>
+            <div style="padding:0.75rem; background:var(--bg-base); border:1px solid var(--hairline);">
+              <strong style="color:var(--accent);">03 ENGINEER</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">You can design, debug, and optimize real production systems under constraints.</p>
+            </div>
+            <div style="padding:0.75rem; background:var(--bg-base); border:1px solid var(--hairline);">
+              <strong style="color:var(--text-main);">04 ADVANCED</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">You can solve difficult algorithmic problems and make distributed architecture choices.</p>
+            </div>
+            <div style="padding:0.75rem; background:var(--bg-base); border:1px solid var(--hairline);">
+              <strong style="color:var(--status-completed);">05 INTERVIEW READY</strong>
+              <p style="color:var(--text-muted); margin-top:0.25rem;">You can demonstrate knowledge and defend technical tradeoffs under interview conditions.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 365-Day Activity Ledger -->
+        <div class="technical-panel">
+          <div class="panel-header">
+            <div class="panel-title"><span>■ 365-DAY ACTIVITY LEDGER</span></div>
+            <span class="tag-tech">142 SESSIONS LOGGED</span>
+          </div>
+          <div class="heatmap-container">
+            <div id="activity-heatmap-grid" class="heatmap-grid"></div>
+          </div>
+        </div>
+
       </section>
 
-      <!-- Dynamic Continue Section -->
-      <div id="continue-section"></div>
-
-      <!-- Topics Grid Section -->
-      <section>
-        <div class="section-header">
-          <h2>Core DSA Topics</h2>
+      <!-- =====================================================================
+           02 SCHEMATIC: ENGINEERING BLUEPRINT ROADMAP
+           ===================================================================== -->
+      <section id="view-roadmap" class="os-view-section">
+        <div class="panel-header" style="margin-bottom:2rem;">
+          <div>
+            <h2 style="font-size:2rem; margin-bottom:0.25rem;">Software Engineering Career Blueprint</h2>
+            <p style="font-size:0.95rem; color:var(--text-muted);">Technical capability graph connecting computer science fundamentals to interview readiness.</p>
+          </div>
         </div>
 
-        <div class="cards-grid">
-          <!-- Topic Card 1 -->
-          <div class="topic-card" data-topic-id="arrays">
-            <div>
-              <div class="card-top">
-                <div class="card-icon">[ ]</div>
-                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
-              </div>
-              <h3>Arrays & Dynamic Arrays</h3>
-              <p>Contiguous memory storage offering O(1) random index access and dynamic scaling.</p>
-              <div class="complexity-tag-group">
-                <span class="complexity-tag">Access: O(1)</span>
-                <span class="complexity-tag">Search: O(n)</span>
-                <span class="complexity-tag space">Space: O(n)</span>
-              </div>
-            </div>
-            <a href="dsa/arrays.html" class="btn btn-primary card-action-btn">Start Topic</a>
+        <div class="blueprint-container">
+          <div id="roadmap-flow-wrapper" class="blueprint-flow"></div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           03 ALGORITHMS: DSA TELEMETRY & ANALYSIS
+           ===================================================================== -->
+      <section id="view-dsa" class="os-view-section">
+        <div class="panel-header" style="margin-bottom:2rem;">
+          <div>
+            <h2 style="font-size:2rem; margin-bottom:0.25rem;">DSA / Engineering Analysis Engine</h2>
+            <p style="font-size:0.95rem; color:var(--text-muted);">Problem volume ledger, algorithmic complexity analysis, and interactive visualizers.</p>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <a href="dsa/arrays.html" class="btn-tech btn-tech-secondary">📊 ARRAY VISUALIZER</a>
+            <a href="dsa/sorting.html" class="btn-tech btn-tech-secondary">📊 SORTING VISUALIZER</a>
+          </div>
+        </div>
+
+        <!-- DSA Telemetry Summary -->
+        <div class="dsa-telemetry-grid" style="margin-bottom:2rem;">
+          <div>
+            <div class="panel-title" style="margin-bottom:1rem;">■ PROBLEM LEDGER</div>
+            <div class="ascii-bar-row"><span>TOTAL SOLVED</span><strong style="color:var(--text-main);">247 / 400</strong></div>
+            <div class="ascii-bar-row"><span>EASY</span><span style="color:var(--status-completed);">96</span></div>
+            <div class="ascii-bar-row"><span>MEDIUM</span><span style="color:var(--accent);">121</span></div>
+            <div class="ascii-bar-row"><span>HARD</span><span style="color:var(--status-danger);">30</span></div>
+            <div class="ascii-bar-row"><span>ACCURACY</span><strong>84.2%</strong></div>
           </div>
 
-          <!-- Topic Card 2 -->
-          <div class="topic-card" data-topic-id="linked-list">
-            <div>
-              <div class="card-top">
-                <div class="card-icon">🔗</div>
-                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
-              </div>
-              <h3>Linked List</h3>
-              <p>Linear node collection connected via memory pointers for efficient Head O(1) insertions.</p>
-              <div class="complexity-tag-group">
-                <span class="complexity-tag">Insert Head: O(1)</span>
-                <span class="complexity-tag">Access: O(n)</span>
-                <span class="complexity-tag space">Space: O(n)</span>
-              </div>
+          <div>
+            <div class="panel-title" style="margin-bottom:1rem;">■ TOPIC MASTERY BARS</div>
+            <div id="dsa-rings-wrapper"></div>
+          </div>
+        </div>
+
+        <!-- DSA Problem Catalog -->
+        <div class="technical-panel">
+          <div class="dsa-filter-bar">
+            <div class="filter-btn-group">
+              <button class="filter-pill dsa-filter-btn active" data-filter="all">ALL TOPICS</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="arrays">ARRAYS</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="linked-list">LINKED LISTS</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="stacks-queues">STACKS/QUEUES</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="binary-search">BINARY SEARCH</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="sorting">SORTING</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="dp">DYNAMIC PROG</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="graphs">GRAPHS</button>
             </div>
-            <a href="dsa/linked-list.html" class="btn btn-primary card-action-btn">Start Topic</a>
+            <div class="filter-btn-group">
+              <button class="filter-pill dsa-filter-btn" data-filter="easy">EASY</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="medium">MEDIUM</button>
+              <button class="filter-pill dsa-filter-btn" data-filter="hard">HARD</button>
+            </div>
           </div>
 
-          <!-- Topic Card 3 -->
-          <div class="topic-card" data-topic-id="stacks-queues">
-            <div>
-              <div class="card-top">
-                <div class="card-icon">🥞</div>
-                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
-              </div>
-              <h3>Stacks & Queues</h3>
-              <p>Abstract linear data structures following LIFO (Stack) and FIFO (Queue) access rules.</p>
-              <div class="complexity-tag-group">
-                <span class="complexity-tag">Push/Pop: O(1)</span>
-                <span class="complexity-tag">Enq/Deq: O(1)</span>
-                <span class="complexity-tag space">Space: O(n)</span>
-              </div>
-            </div>
-            <a href="dsa/stacks-queues.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          <div id="dsa-problems-list"></div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           04 SYSTEMS: CORE CS TRIAD & SYSTEM DESIGN
+           ===================================================================== -->
+      <section id="view-corecs" class="os-view-section">
+        <div class="panel-header" style="margin-bottom:2rem;">
+          <div>
+            <h2 style="font-size:2rem; margin-bottom:0.25rem;">Core Computer Science & Systems Design</h2>
+            <p style="font-size:0.95rem; color:var(--text-muted);">In-depth technical blueprints, memory models, protocols, and architectural tradeoffs.</p>
+          </div>
+        </div>
+
+        <!-- Subject Tabs -->
+        <div class="corecs-tabs">
+          <button class="corecs-tab-btn active" data-subject="cpp">C++ & MEMORY INTERNALS</button>
+          <button class="corecs-tab-btn" data-subject="dbms">DBMS & TRANSACTIONS</button>
+          <button class="corecs-tab-btn" data-subject="os">OPERATING SYSTEMS</button>
+          <button class="corecs-tab-btn" data-subject="cn">COMPUTER NETWORKS</button>
+          <button class="corecs-tab-btn" data-subject="systemDesign">SYSTEM DESIGN</button>
+        </div>
+
+        <div id="corecs-cards-container" class="qa-card-grid"></div>
+      </section>
+
+      <!-- =====================================================================
+           05 BUILD: DEVELOPMENT PROGRESSION
+           ===================================================================== -->
+      <section id="view-dev" class="os-view-section">
+        <div class="panel-header" style="margin-bottom:2rem;">
+          <div>
+            <h2 style="font-size:2rem; margin-bottom:0.25rem;">Full-Stack & Systems Development Progression</h2>
+            <p style="font-size:0.95rem; color:var(--text-muted);">Structured progression from browser rendering engines to distributed cloud pipelines.</p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:1.5rem;">
+          <div class="technical-panel">
+            <div class="font-mono" style="font-size:0.75rem; color:var(--accent);">LEVEL 01 · FOUNDATIONS</div>
+            <h3 style="font-size:1.35rem; margin:0.5rem 0 0.75rem;">Web & Systems Basics</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Semantic HTML5, CSS Grid/Flexbox, ES6+ JavaScript runtime (Event loop, Microtask queue), Git branching workflows.</p>
+            <ul style="font-size:0.85rem; color:var(--text-body); padding-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; font-family:var(--font-mono);">
+              <li>DOM tree rendering pipeline & layout thrashing</li>
+              <li>Promise resolution & Async/Await error handling</li>
+              <li>Git rebase, merge conflict resolution & hooks</li>
+            </ul>
           </div>
 
-          <!-- Topic Card 4 -->
-          <div class="topic-card" data-topic-id="binary-search">
-            <div>
-              <div class="card-top">
-                <div class="card-icon">🎯</div>
-                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
-              </div>
-              <h3>Binary Search</h3>
-              <p>Divide-and-conquer algorithm that halves the search range on sorted arrays every step.</p>
-              <div class="complexity-tag-group">
-                <span class="complexity-tag">Time: O(log n)</span>
-                <span class="complexity-tag space">Space: O(1)</span>
-              </div>
-            </div>
-            <a href="dsa/binary-search.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          <div class="technical-panel">
+            <div class="font-mono" style="font-size:0.75rem; color:var(--accent);">LEVEL 02 · PRODUCTION</div>
+            <h3 style="font-size:1.35rem; margin:0.5rem 0 0.75rem;">Full-Stack Architecture</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">TypeScript type safety, React component lifecycles, Node.js REST/GraphQL APIs, PostgreSQL relational schema design.</p>
+            <ul style="font-size:0.85rem; color:var(--text-body); padding-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; font-family:var(--font-mono);">
+              <li>State management & custom memoization hooks</li>
+              <li>Database indexing, foreign keys & normalization</li>
+              <li>JWT authentication & HttpOnly session cookies</li>
+            </ul>
           </div>
 
-          <!-- Topic Card 5 -->
-          <div class="topic-card" data-topic-id="sorting">
-            <div>
-              <div class="card-top">
-                <div class="card-icon">📊</div>
-                <span class="completion-badge badge-coming-soon" style="display:none; background: rgba(63,185,80,0.2); color: var(--success); border-color: var(--success);">✓ Completed</span>
-              </div>
-              <h3>Bubble Sort & Fundamentals</h3>
-              <p>Classic comparison-based sorting algorithm with animated bar chart comparisons and swaps.</p>
-              <div class="complexity-tag-group">
-                <span class="complexity-tag">Time: O(n²)</span>
-                <span class="complexity-tag space">Space: O(1)</span>
-              </div>
-            </div>
-            <a href="dsa/sorting.html" class="btn btn-primary card-action-btn">Start Topic</a>
+          <div class="technical-panel">
+            <div class="font-mono" style="font-size:0.75rem; color:var(--accent);">LEVEL 03 · SCALE</div>
+            <h3 style="font-size:1.35rem; margin:0.5rem 0 0.75rem;">Distributed Systems</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">Redis caching strategies, Docker containerization, CI/CD pipelines, rate limiting, and cloud-native architecture.</p>
+            <ul style="font-size:0.85rem; color:var(--text-body); padding-left:1.2rem; display:flex; flex-direction:column; gap:0.4rem; font-family:var(--font-mono);">
+              <li>Cache-Aside, Write-Through & Eviction policies</li>
+              <li>Message brokers (Kafka / RabbitMQ) for event streams</li>
+              <li>Horizontal auto-scaling & load balancer algorithms</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- Coming Soon Modules Section -->
-      <section>
-        <div class="section-header">
-          <h2>Upcoming Modules</h2>
+      <!-- =====================================================================
+           06 PORTFOLIO: ENGINEERING PROJECT SPECS
+           ===================================================================== -->
+      <section id="view-projects" class="os-view-section">
+        <div class="panel-header" style="margin-bottom:2rem;">
+          <div>
+            <h2 style="font-size:2rem; margin-bottom:0.25rem;">Engineering Portfolio Specification</h2>
+            <p style="font-size:0.95rem; color:var(--text-muted);">High-impact architectural builds with Google-standard resume bullet formulas.</p>
+          </div>
         </div>
-        <div class="cards-grid">
-          <div class="topic-card" style="opacity: 0.7;">
-            <div>
-              <div class="card-top">
-                <div class="card-icon">🌐</div>
-                <span class="badge-coming-soon">Coming Soon</span>
-              </div>
-              <h3>Web Dev Deep Dives</h3>
-              <p>Event loop, DOM rendering pipeline, async patterns, and browser runtime mechanics.</p>
+
+        <div class="project-tier-tabs">
+          <button class="corecs-tab-btn project-tier-tab-btn" data-tier="tier1">TIER 1 — FOUNDATION</button>
+          <button class="corecs-tab-btn project-tier-tab-btn" data-tier="tier2">TIER 2 — PRODUCTION</button>
+          <button class="corecs-tab-btn project-tier-tab-btn active" data-tier="tier3">TIER 3 — RESUME-WORTHY</button>
+          <button class="corecs-tab-btn project-tier-tab-btn" data-tier="tier4">TIER 4 — EXCEPTIONAL</button>
+        </div>
+
+        <div id="projects-grid-container" class="project-grid"></div>
+      </section>
+
+      <!-- =====================================================================
+           07 TRACKS: COMPANY-SPECIFIC INTERVIEW BLUEPRINTS
+           ===================================================================== -->
+      <section id="view-companies" class="os-view-section">
+        <div class="panel-header" style="margin-bottom:2rem;">
+          <div>
+            <h2 style="font-size:2rem; margin-bottom:0.25rem;">Company-Specific Technical Tracks</h2>
+            <p style="font-size:0.95rem; color:var(--text-muted);">Verified interview structures, prioritized algorithm topics, and architectural focus areas.</p>
+          </div>
+        </div>
+
+        <div class="company-grid">
+          <div class="technical-panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <span class="panel-title">GOOGLE / SDE TRACK</span>
+              <span class="tag-tech">GRAPH · DP · TRIE</span>
             </div>
-            <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">Locked</button>
+            <p style="font-size:0.85rem; color:var(--text-body); margin-bottom:1rem;">Strict emphasis on clean, optimal code, time-space complexities, and scalability edge cases.</p>
+            <div class="font-mono" style="font-size:0.8rem; color:var(--text-muted);">
+              <strong>ROUNDS:</strong> 1 Online Assessment + 4 Technical Interviews (DSA + Scalability)
+            </div>
           </div>
 
-          <div class="topic-card" style="opacity: 0.7;">
-            <div>
-              <div class="card-top">
-                <div class="card-icon">💻</div>
-                <span class="badge-coming-soon">Coming Soon</span>
-              </div>
-              <h3>Core Computer Science</h3>
-              <p>Process management, virtual memory, TCP/IP networking, and foundational System Design.</p>
+          <div class="technical-panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <span class="panel-title">MICROSOFT / SDE TRACK</span>
+              <span class="tag-tech">TREES · SYSTEM DESIGN</span>
             </div>
-            <button class="btn btn-secondary" disabled style="opacity: 0.6; cursor: not-allowed;">Locked</button>
+            <p style="font-size:0.85rem; color:var(--text-body); margin-bottom:1rem;">Heavy focus on tree traversals, strings, clean OOP structure, and behavioral leadership principles.</p>
+            <div class="font-mono" style="font-size:0.8rem; color:var(--text-muted);">
+              <strong>ROUNDS:</strong> Codility Assessment + 3 Technical Rounds + AA (As Appropriate) Round
+            </div>
+          </div>
+
+          <div class="technical-panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <span class="panel-title">AMAZON / SDE TRACK</span>
+              <span class="tag-tech">LP · BFS · ARRAYS</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-body); margin-bottom:1rem;">50% Technical DSA + 50% Amazon 16 Leadership Principles (Customer Obsession, Ownership).</p>
+            <div class="font-mono" style="font-size:0.8rem; color:var(--text-muted);">
+              <strong>ROUNDS:</strong> OA (2 Coding + LP) + 4 Virtual Onsite Loops
+            </div>
+          </div>
+
+          <div class="technical-panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <span class="panel-title">NVIDIA / SYSTEMS TRACK</span>
+              <span class="tag-tech">C++ · MEMORY · THREADS</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-body); margin-bottom:1rem;">Deep questions on pointer arithmetic, CPU/GPU memory hierarchy, cache lines, and multi-threading.</p>
+            <div class="font-mono" style="font-size:0.8rem; color:var(--text-muted);">
+              <strong>ROUNDS:</strong> Technical screening + 3 C++/Systems Architecture Deep Dives
+            </div>
           </div>
         </div>
       </section>
-      <!-- Footer -->
+
+      <!-- =====================================================================
+           08 INTEL: AI CAREER MENTOR PANEL
+           ===================================================================== -->
+      <section id="view-mentor" class="os-view-section">
+        <div class="panel-header" style="margin-bottom:2rem;">
+          <div>
+            <h2 style="font-size:2rem; margin-bottom:0.25rem;">Intelligence Specification & Mentor Panel</h2>
+            <p style="font-size:0.95rem; color:var(--text-muted);">Context-aware engineering mentor. Socratic hints, bottleneck remediation, and resume reviews.</p>
+          </div>
+        </div>
+
+        <div class="technical-panel" style="padding:0; overflow:hidden;">
+          <div style="padding:1rem 1.5rem; background:var(--bg-subtle); border-bottom:1px solid var(--hairline); display:flex; justify-content:space-between; align-items:center;">
+            <div class="panel-title"><span>■ CAREER OS TELEMETRY LINKED</span></div>
+            <span class="tag-tech" style="color:var(--status-completed);">DIAGNOSTIC ENGINE: ONLINE</span>
+          </div>
+
+          <div id="mentor-chat-log" class="mentor-chat-messages" style="height:380px;">
+            <div class="chat-bubble bot">
+              ✦ <strong>ENGINEERING MENTOR TELEMETRY:</strong><br><br>
+              • Engineering Readiness: <strong>74 / 100</strong><br>
+              • Identified Bottleneck: <strong>Computer Networks (35%)</strong><br>
+              • Active Track: <strong>Product Engineering</strong><br><br>
+              Select a diagnostic prompt below or input your query to begin analysis.
+            </div>
+          </div>
+
+          <div class="mentor-prompt-chips" style="border-top:1px solid var(--hairline);">
+            <div class="prompt-chip">Analyze my Computer Networks bottleneck</div>
+            <div class="prompt-chip">Give Socratic hint for Dynamic Programming</div>
+            <div class="prompt-chip">Generate Diagnostic Quiz on OS Concurrency</div>
+            <div class="prompt-chip">Optimize my Resume Project Bullets (STAR)</div>
+          </div>
+
+          <div class="mentor-input-row">
+            <input type="text" id="mentor-input" class="mentor-input-field" placeholder="Query algorithm invariants, protocol specs, or architecture..." autocomplete="off">
+            <button id="mentor-send-btn" class="btn-tech btn-tech-primary">EXECUTE</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Technical Footer -->
       <footer class="app-footer">
-        <p>Built with ❤️ by <strong>CHARAN</strong> | Connect on <a href="https://www.instagram.com/charan__3_/" target="_blank" rel="noopener noreferrer" class="instagram-link">📸 @charan__3_</a></p>
+        <p class="font-mono" style="font-size:0.8rem; color:var(--text-dim);">
+          CSE / CAREER OS · DESIGNED & ENGINEERED BY <strong>CHARAN</strong> · <a href="https://www.instagram.com/charan__3_/" target="_blank" rel="noopener noreferrer">@charan__3_</a>
+        </p>
       </footer>
+
     </main>
   </div>
 
+  <!-- Command Palette Modal -->
+  <div id="cmd-modal-backdrop" class="modal-backdrop">
+    <div class="cmd-modal">
+      <input type="text" id="cmd-search-input" class="cmd-search-input" placeholder="Type a command or navigate blueprints..." autocomplete="off">
+      <div id="cmd-results-list" class="cmd-results-list"></div>
+    </div>
+  </div>
+
+  <!-- Node Drawer Modal -->
+  <div id="node-modal-backdrop" class="modal-backdrop">
+    <div class="node-drawer-card" id="node-modal-content" style="background:var(--bg-surface); border:1px solid var(--hairline-strong);"></div>
+  </div>
+
+  <!-- Focus Mode Overlay -->
+  <div id="focus-mode-overlay">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+      <span class="panel-title">■ DISTRACTION-FREE ENGINEERING FOCUS</span>
+      <button id="exit-focus-btn" class="btn-tech btn-tech-secondary">EXIT (ESC)</button>
+    </div>
+
+    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; max-width:640px; margin:0 auto; width:100%;">
+      <div id="focus-topic-title" style="font-family:var(--font-mono); font-size:1.15rem; color:var(--accent);">Active Focus Session</div>
+      <div id="focus-timer-display" class="focus-timer">45:00</div>
+      
+      <div style="display:flex; gap:0.75rem; margin-bottom:2rem;">
+        <button id="focus-timer-toggle-btn" class="btn-tech btn-tech-primary">PAUSE</button>
+        <button id="focus-timer-reset-btn" class="btn-tech btn-tech-secondary">RESET</button>
+      </div>
+
+      <div class="technical-panel" style="width:100%;">
+        <div class="panel-title" style="margin-bottom:0.5rem;">■ SESSION SCRATCHPAD</div>
+        <textarea style="width:100%; height:120px; background:var(--bg-base); border:1px solid var(--hairline-strong); padding:0.75rem; color:var(--text-main); font-family:var(--font-mono); font-size:0.85rem; outline:none; resize:none;" placeholder="Write invariant proofs, pointer states, or complexity equations..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Scripts -->
   <script src="js/main.js"></script>
 </body>
 </html>
