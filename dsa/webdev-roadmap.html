@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Dev Roadmap — 2026 | CSE Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0E11;
+    --bg-raised:#12161B;
+    --line:#22282F;
+    --copper:#C9873C;
+    --copper-soft:rgba(201,135,60,0.12);
+    --teal:#4FB8A6;
+    --teal-soft:rgba(79,184,166,0.12);
+    --text:#E7E9EA;
+    --text-dim:#8B939C;
+    --text-faint:#565E67;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--copper);color:#0B0E11;}
+
+  /* ---------- TOP NAV BAR ---------- */
+  .top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(11, 14, 17, 0.9);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+    padding: 0.85rem 1.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--text);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .brand-badge {
+    background: var(--teal-soft);
+    border: 1px solid rgba(79,184,166,0.3);
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+  }
+  .btn-back-hub {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    color: var(--text);
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  .btn-back-hub:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:4.5rem 1.5rem 3.5rem;
+    max-width:900px;
+    margin:0 auto;
+    position:relative;
+  }
+  .hero-eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:0.6rem;
+    margin-bottom:1.4rem;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:8px;height:8px;
+    background:var(--teal);
+    border-radius:50%;
+    box-shadow:0 0 12px var(--teal);
+    animation: pulse-dot 2s infinite ease-in-out;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+  }
+  .hero h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(2.4rem,6vw,3.6rem);
+    line-height:1.05;
+    letter-spacing:-0.02em;
+    max-width:14ch;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--copper);
+  }
+  .hero p{
+    margin-top:1.4rem;
+    max-width:56ch;
+    color:var(--text-dim);
+    font-size:1.05rem;
+  }
+  .hero-meta{
+    margin-top:2.2rem;
+    display:flex;
+    gap:2rem;
+    flex-wrap:wrap;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    color:var(--text-faint);
+  }
+  .hero-meta strong{color:var(--text);font-weight:500;}
+
+  /* ---------- ROUTE PROGRESS BAR ---------- */
+  .route-strip{
+    position:sticky;
+    top:57px;
+    z-index:50;
+    background:rgba(11,14,17,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    border-top:1px solid var(--line);
+  }
+  .route-track{
+    max-width:900px;
+    margin:0 auto;
+    padding:0.85rem 1.5rem;
+    display:flex;
+    align-items:center;
+    gap:0;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .route-track::-webkit-scrollbar{display:none;}
+  .route-node{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.7rem;
+    letter-spacing:0.04em;
+    color:var(--text-faint);
+    white-space:nowrap;
+    transition:color 0.2s;
+  }
+  .route-node:hover{color:var(--text);}
+  .route-node .dot{
+    width:6px;height:6px;
+    border-radius:50%;
+    background:var(--text-faint);
+    margin-right:0.45rem;
+    flex:0 0 auto;
+  }
+  .route-node[data-stage="1"] .dot{background:var(--teal);}
+  .route-node[data-stage="2"] .dot{background:#6FA8DC;}
+  .route-node[data-stage="3"] .dot{background:var(--copper);}
+  .route-node[data-stage="4"] .dot{background:#B07CC6;}
+  .route-node[data-stage="5"] .dot{background:#D9737A;}
+  .route-connector{
+    width:20px;height:1px;
+    background:var(--line);
+    flex:0 0 auto;
+    margin:0 0.4rem;
+  }
+
+  /* ---------- MAIN LAYOUT ---------- */
+  main{max-width:900px;margin:0 auto;padding:0 1.5rem 6rem;}
+
+  .stage{
+    padding-top:4.5rem;
+    scroll-margin-top:7rem;
+  }
+  .stage-head{
+    display:flex;
+    align-items:baseline;
+    gap:1rem;
+    margin-bottom:0.6rem;
+  }
+  .stage-index{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.85rem;
+    color:var(--text-faint);
+  }
+  .stage h2{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:1.7rem;
+    letter-spacing:-0.01em;
+  }
+  .stage[data-stage="1"] h2{color:var(--teal);}
+  .stage[data-stage="2"] h2{color:#6FA8DC;}
+  .stage[data-stage="3"] h2{color:var(--copper);}
+  .stage[data-stage="4"] h2{color:#B07CC6;}
+  .stage[data-stage="5"] h2{color:#D9737A;}
+  .stage-sub{
+    color:var(--text-dim);
+    max-width:62ch;
+    margin-bottom:1.8rem;
+    font-size:0.96rem;
+  }
+
+  .topic-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:0.9rem;
+  }
+  .topic-card{
+    background:var(--bg-raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:1.1rem 1.15rem;
+    cursor:pointer;
+    transition:border-color 0.15s, transform 0.15s;
+    user-select:none;
+  }
+  .topic-card:hover{border-color:var(--text-faint);transform:translateY(-1px);}
+  .topic-card.done{
+    border-color:var(--teal);
+    background:linear-gradient(180deg, rgba(79,184,166,0.07), transparent);
+  }
+  .topic-head{
+    display:flex;
+    align-items:flex-start;
+    gap:0.7rem;
+  }
+  .check{
+    flex:0 0 auto;
+    width:18px;height:18px;
+    border-radius:5px;
+    border:1.5px solid var(--text-faint);
+    margin-top:0.15rem;
+    position:relative;
+    transition:all 0.15s;
+  }
+  .topic-card.done .check{
+    background:var(--teal);
+    border-color:var(--teal);
+  }
+  .topic-card.done .check::after{
+    content:"";
+    position:absolute;
+    left:5px;top:1px;
+    width:4px;height:9px;
+    border:solid #0B0E11;
+    border-width:0 2px 2px 0;
+    transform:rotate(40deg);
+  }
+  .topic-title{
+    font-weight:600;
+    font-size:0.95rem;
+    color:var(--text);
+  }
+  .topic-card.done .topic-title{color:var(--text-dim);text-decoration:line-through;text-decoration-color:var(--text-faint);}
+  .topic-desc{
+    margin-top:0.4rem;
+    font-size:0.82rem;
+    color:var(--text-dim);
+    padding-left:1.9rem;
+  }
+  .topic-tags{
+    margin-top:0.65rem;
+    padding-left:1.9rem;
+    display:flex;
+    gap:0.4rem;
+    flex-wrap:wrap;
+  }
+  .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.66rem;
+    padding:0.18rem 0.5rem;
+    border-radius:20px;
+    background:rgba(255,255,255,0.04);
+    color:var(--text-faint);
+    border:1px solid var(--line);
+  }
+  .tag.core{color:var(--copper);border-color:rgba(201,135,60,0.3);}
+
+  .callout{
+    margin-top:1.8rem;
+    border-left:2px solid var(--copper);
+    padding:0.9rem 1.2rem;
+    background:rgba(201,135,60,0.05);
+    border-radius:0 8px 8px 0;
+    font-size:0.88rem;
+    color:var(--text-dim);
+  }
+  .callout strong{color:var(--text);}
+
+  /* ---------- PROGRESS SUMMARY ---------- */
+  .progress-bar-wrap{
+    max-width:900px;margin:0 auto;padding:0 1.5rem;
+  }
+  .progress-shell{
+    height:4px;
+    background:var(--line);
+    border-radius:4px;
+    overflow:hidden;
+    margin-top:0.6rem;
+  }
+  .progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(90deg, var(--teal), var(--copper));
+    transition:width 0.3s ease;
+  }
+  .progress-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;
+    color:var(--text-faint);
+    margin-top:0.5rem;
+  }
+
+  /* ---------- FOOTER NOTE ---------- */
+  footer{
+    max-width:900px;margin:0 auto;
+    padding:3rem 1.5rem 5rem;
+    color:var(--text-faint);
+    font-size:0.8rem;
+    font-family:'JetBrains Mono',monospace;
+    border-top:1px solid var(--line);
+    margin-top:3rem;
+  }
+
+  @media(max-width:600px){
+    .hero{padding:3rem 1.2rem 2rem;}
+    .stage{padding-top:3rem;}
+    .route-strip{top:54px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- Top Navigation -->
+<div class="top-nav">
+  <div class="brand-group">
+    <span class="brand-badge">CSE OS</span>
+    <span>WEB DEV BLUEPRINT</span>
+  </div>
+  <a href="../index.html#dev" class="btn-back-hub">
+    <span>← BACK TO ENGINEERING OS</span>
+  </a>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">web dev · build track</div>
+  <h1>The road from <em>zero</em> to shipping full-stack.</h1>
+  <p>Five stages, ordered the way hiring managers and real projects actually need them — not a 47-item checklist. Tap any topic to mark it done. Built alongside your DSA and AI-engineer tracks, not instead of them.</p>
+  <div class="hero-meta">
+    <span>5 stages</span>
+    <span><strong>32</strong> topics</span>
+    <span>updated <strong>Aug 2026</strong></span>
+    <span style="color:var(--teal);">● VERIFIED BLUEPRINT</span>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-shell"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 / 32 topics marked done</div>
+</div>
+
+<div class="route-strip">
+  <div class="route-track">
+    <a href="#stage-1" class="route-node" data-stage="1"><span class="dot"></span>Fundamentals</a>
+    <span class="route-connector"></span>
+    <a href="#stage-2" class="route-node" data-stage="2"><span class="dot"></span>Frontend</a>
+    <span class="route-connector"></span>
+    <a href="#stage-3" class="route-node" data-stage="3"><span class="dot"></span>Backend</a>
+    <span class="route-connector"></span>
+    <a href="#stage-4" class="route-node" data-stage="4"><span class="dot"></span>Data &amp; Infra</a>
+    <span class="route-connector"></span>
+    <a href="#stage-5" class="route-node" data-stage="5"><span class="dot"></span>Ship It</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- STAGE 1 -->
+  <section class="stage" id="stage-1" data-stage="1">
+    <div class="stage-head"><span class="stage-index">01</span><h2>Fundamentals</h2></div>
+    <p class="stage-sub">Everything else on this page assumes these are solid. Don't skip to React before this is boring to you.</p>
+    <div class="topic-grid">
+      <div class="topic-card" data-id="html"><div class="topic-head"><div class="check"></div><div class="topic-title">HTML — semantic structure</div></div><div class="topic-desc">Landmarks, forms, accessibility tree, not just div soup.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="css"><div class="topic-head"><div class="check"></div><div class="topic-title">CSS — layout systems</div></div><div class="topic-desc">Flexbox, Grid, responsive units, container queries.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="js-core"><div class="topic-head"><div class="check"></div><div class="topic-title">JavaScript — the language</div></div><div class="topic-desc">Closures, prototypes, async/await, event loop.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="dom"><div class="topic-head"><div class="check"></div><div class="topic-title">DOM &amp; browser APIs</div></div><div class="topic-desc">Events, fetch, storage, rendering pipeline basics.</div><div class="topic-tags"><span class="tag">browser</span></div></div>
+      <div class="topic-card" data-id="git"><div class="topic-head"><div class="check"></div><div class="topic-title">Git &amp; GitHub</div></div><div class="topic-desc">Branching, rebasing, PRs — you already use this daily.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="cli"><div class="topic-head"><div class="check"></div><div class="topic-title">Terminal &amp; package managers</div></div><div class="topic-desc">npm/pnpm, shell basics, reading error stacks fast.</div><div class="topic-tags"><span class="tag">tooling</span></div></div>
+    </div>
+  </section>
+
+  <!-- STAGE 2 -->
+  <section class="stage" id="stage-2" data-stage="2">
+    <div class="stage-head"><span class="stage-index">02</span><h2>Frontend</h2></div>
+    <p class="stage-sub">TypeScript earlier than most roadmaps suggest, then one framework — deep, not three shallow.</p>
+    <div class="topic-grid">
+      <div class="topic-card" data-id="ts"><div class="topic-head"><div class="check"></div><div class="topic-title">TypeScript</div></div><div class="topic-desc">Types, generics, narrowing — pick this up before React, not after.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="react"><div class="topic-head"><div class="check"></div><div class="topic-title">React — components &amp; hooks</div></div><div class="topic-desc">useState/useEffect deeply, then custom hooks. You already use this in Chat-Y.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="state"><div class="topic-head"><div class="check"></div><div class="topic-title">State management</div></div><div class="topic-desc">Context vs Zustand vs server state (React Query) — know when each fits.</div><div class="topic-tags"><span class="tag">frontend</span></div></div>
+      <div class="topic-card" data-id="nextjs"><div class="topic-head"><div class="check"></div><div class="topic-title">Next.js — App Router</div></div><div class="topic-desc">Server/client components, routing, streaming. Your Chat-Y stack.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="perf"><div class="topic-head"><div class="check"></div><div class="topic-title">Core Web Vitals &amp; perf</div></div><div class="topic-desc">LCP/CLS/INP, code-splitting, image optimization.</div><div class="topic-tags"><span class="tag">perf</span></div></div>
+      <div class="topic-card" data-id="a11y"><div class="topic-head"><div class="check"></div><div class="topic-title">Accessibility</div></div><div class="topic-desc">Keyboard nav, ARIA, contrast — non-negotiable, not extra credit.</div><div class="topic-tags"><span class="tag">frontend</span></div></div>
+      <div class="topic-card" data-id="testing-fe"><div class="topic-head"><div class="check"></div><div class="topic-title">Testing — Vitest/RTL</div></div><div class="topic-desc">Component tests, not just "it renders."</div><div class="topic-tags"><span class="tag">quality</span></div></div>
+    </div>
+  </section>
+
+  <!-- STAGE 3 -->
+  <section class="stage" id="stage-3" data-stage="3">
+    <div class="stage-head"><span class="stage-index">03</span><h2>Backend</h2></div>
+    <p class="stage-sub">Node/Express since you're already JS-heavy across your projects, plus enough Python/FastAPI since your JARVIS backends use it.</p>
+    <div class="topic-grid">
+      <div class="topic-card" data-id="node"><div class="topic-head"><div class="check"></div><div class="topic-title">Node.js &amp; Express</div></div><div class="topic-desc">Middleware, routing, error handling patterns.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="fastapi"><div class="topic-head"><div class="check"></div><div class="topic-title">Python — FastAPI</div></div><div class="topic-desc">Already your go-to for JARVIS backends — formalize it: Pydantic, async routes.</div><div class="topic-tags"><span class="tag">backend</span></div></div>
+      <div class="topic-card" data-id="rest"><div class="topic-head"><div class="check"></div><div class="topic-title">REST API design</div></div><div class="topic-desc">Resource modeling, status codes, versioning.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="graphql"><div class="topic-head"><div class="check"></div><div class="topic-title">GraphQL (optional)</div></div><div class="topic-desc">Only if a project actually needs flexible querying.</div><div class="topic-tags"><span class="tag">optional</span></div></div>
+      <div class="topic-card" data-id="auth"><div class="topic-head"><div class="check"></div><div class="topic-title">Auth — JWT &amp; OAuth 2.0</div></div><div class="topic-desc">Directly useful — this is your current Chat-Y NextAuth work.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="websocket"><div class="topic-head"><div class="check"></div><div class="topic-title">WebSockets</div></div><div class="topic-desc">Real-time — you're already doing this in NEXUS's mac-agent.</div><div class="topic-tags"><span class="tag">realtime</span></div></div>
+    </div>
+  </section>
+
+  <!-- STAGE 4 -->
+  <section class="stage" id="stage-4" data-stage="4">
+    <div class="stage-head"><span class="stage-index">04</span><h2>Data &amp; Infra</h2></div>
+    <p class="stage-sub">Storage, security, and the plumbing that keeps an app alive past the demo.</p>
+    <div class="topic-grid">
+      <div class="topic-card" data-id="sql"><div class="topic-head"><div class="check"></div><div class="topic-title">SQL — Postgres</div></div><div class="topic-desc">Joins, indexes, migrations. Pairs with your DBMS coursework directly.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="orm"><div class="topic-head"><div class="check"></div><div class="topic-title">Prisma / ORM patterns</div></div><div class="topic-desc">Schema design, migrations — already in your Chat-Y OAuth stack.</div><div class="topic-tags"><span class="tag">data</span></div></div>
+      <div class="topic-card" data-id="nosql"><div class="topic-head"><div class="check"></div><div class="topic-title">NoSQL — when to reach for it</div></div><div class="topic-desc">Redis for cache/queues, document stores for unstructured data.</div><div class="topic-tags"><span class="tag">data</span></div></div>
+      <div class="topic-card" data-id="security"><div class="topic-head"><div class="check"></div><div class="topic-title">Web security basics</div></div><div class="topic-desc">XSS, CSRF, SQL injection, secrets management — know the OWASP top 10.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="docker"><div class="topic-head"><div class="check"></div><div class="topic-title">Docker</div></div><div class="topic-desc">Containerize a backend so it runs anywhere — useful for your self-hosted preference.</div><div class="topic-tags"><span class="tag">infra</span></div></div>
+      <div class="topic-card" data-id="cicd"><div class="topic-head"><div class="check"></div><div class="topic-title">CI/CD basics</div></div><div class="topic-desc">GitHub Actions — auto-test and deploy on push.</div><div class="topic-tags"><span class="tag">infra</span></div></div>
+    </div>
+  </section>
+
+  <!-- STAGE 5 -->
+  <section class="stage" id="stage-5" data-stage="5">
+    <div class="stage-head"><span class="stage-index">05</span><h2>Ship It</h2></div>
+    <p class="stage-sub">Deployment, observability, and the AI-integration layer that's increasingly what "full-stack" means in 2026.</p>
+    <div class="topic-grid">
+      <div class="topic-card" data-id="deploy"><div class="topic-head"><div class="check"></div><div class="topic-title">Deployment — Vercel/Railway</div></div><div class="topic-desc">You already ship Chat-Y this way — extend to a backend service too.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="monitoring"><div class="topic-head"><div class="check"></div><div class="topic-title">Logging &amp; monitoring</div></div><div class="topic-desc">Know when something breaks before a user tells you.</div><div class="topic-tags"><span class="tag">ops</span></div></div>
+      <div class="topic-card" data-id="llm-integration"><div class="topic-head"><div class="check"></div><div class="topic-title">LLM API integration</div></div><div class="topic-desc">Streaming responses, tool calling, provider fallbacks — your Chat-Y multi-provider work.</div><div class="topic-tags"><span class="tag core">core</span></div></div>
+      <div class="topic-card" data-id="rag"><div class="topic-head"><div class="check"></div><div class="topic-title">RAG &amp; vector search basics</div></div><div class="topic-desc">Embeddings, chunking, retrieval — connects to your AI-engineer track.</div><div class="topic-tags"><span class="tag">ai</span></div></div>
+      <div class="topic-card" data-id="pwa"><div class="topic-head"><div class="check"></div><div class="topic-title">PWA &amp; offline-first</div></div><div class="topic-desc">Service workers, caching strategies — matches your JARVIS OMNI direction.</div><div class="topic-tags"><span class="tag">frontend</span></div></div>
+    </div>
+    <div class="callout"><strong>Where this fits your stack:</strong> you're already living in stage 5 territory via Chat-Y and JARVIS. Use stages 1–4 to backfill the fundamentals that make that work solid instead of duct-taped — especially auth, security, and SQL.</div>
+  </section>
+
+</main>
+
+<footer>
+  web-dev-roadmap · sources: roadmap.sh (frontend/backend), 2026 full-stack hiring-skill breakdowns · progress is saved in local storage
+</footer>
+
+<script>
+  const STORAGE_KEY = 'cse_webdev_roadmap_progress_v1';
+  const cards = document.querySelectorAll('.topic-card');
+  const fill = document.getElementById('progressFill');
+  const label = document.getElementById('progressLabel');
+  const total = cards.length;
+
+  let saved = {};
+  try {
+    saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch(e) {}
+
+  cards.forEach(card => {
+    const id = card.getAttribute('data-id');
+    if (saved[id]) {
+      card.classList.add('done');
+    }
+  });
+
+  function updateProgress(){
+    const done = document.querySelectorAll('.topic-card.done').length;
+    fill.style.width = (done/total*100) + '%';
+    label.textContent = done + ' / ' + total + ' topics marked done (' + Math.round(done/total*100) + '%)';
+    
+    const stateObj = {};
+    cards.forEach(c => {
+      stateObj[c.getAttribute('data-id')] = c.classList.contains('done');
+    });
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stateObj));
+    } catch(e) {}
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('done');
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+</script>
+
+</body>
+</html>
