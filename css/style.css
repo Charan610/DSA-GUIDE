@@ -836,3 +836,180 @@ button {
   .hero-main-title { font-size: 2.5rem; }
   .header-center { display: none; }
 }
+
+/* ==========================================================================
+   DSA Roadmap Featured Hero Banner & Micro-Animations
+   ========================================================================== */
+.roadmap-feature-hero {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--border-radius-md);
+  padding: 1.75rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.roadmap-feature-hero:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-border);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 25px var(--accent-muted);
+}
+
+/* Animated gradient glowing top edge beam */
+.roadmap-feature-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), #10b981, transparent);
+  animation: beam-sweep 4s linear infinite;
+}
+
+@keyframes beam-sweep {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.roadmap-feature-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.roadmap-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent-muted);
+  border: 1px solid var(--accent-border);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.6rem;
+}
+
+.live-beacon {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: pulse-beacon 1.8s infinite ease-in-out;
+}
+
+@keyframes pulse-beacon {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.4; }
+}
+
+.roadmap-feature-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn-tech-glow {
+  background: var(--accent);
+  color: #000 !important;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--border-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--accent-muted);
+  transition: all 0.2s ease;
+}
+
+.btn-tech-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px var(--accent);
+  filter: brightness(1.1);
+}
+
+.btn-tech-outline {
+  background: var(--bg-surface-elevated);
+  color: var(--text-main) !important;
+  border: 1px solid var(--hairline-strong);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.6rem 1.15rem;
+  border-radius: var(--border-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-tech-outline:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--accent-border);
+  color: var(--accent) !important;
+  transform: translateY(-2px);
+}
+
+/* Quick Jump Stage Chips */
+.stage-quick-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+  margin-top: 0.5rem;
+}
+
+.stage-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.75rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--hairline);
+  border-radius: var(--border-radius-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.stage-chip:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--hairline-strong);
+  color: var(--text-main);
+  transform: translateY(-1px);
+}
+
+.stage-chip.chip-stl {
+  background: var(--accent-muted);
+  border-color: var(--accent-border);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.stage-chip.chip-stl:hover {
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 10px var(--accent-muted);
+}
+

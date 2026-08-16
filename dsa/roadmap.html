@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A structured, capability-driven roadmap for mastering data structures and algorithms with C++ from foundational syntax to advanced dynamic programming and graph theory.">
+  <title>DSA Roadmap — C++ to Advanced | CSE Career OS</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    :root {
+      --rm-bg: #0a0c10;
+      --rm-surface: #101319;
+      --rm-surface-elevated: #161b24;
+      --rm-surface-muted: #1c222e;
+      --rm-border: rgba(255, 255, 255, 0.08);
+      --rm-border-strong: rgba(255, 255, 255, 0.16);
+      --rm-accent: #e2a03f;
+      --rm-accent-soft: rgba(226, 160, 63, 0.12);
+      --rm-accent-border: rgba(226, 160, 63, 0.3);
+      --rm-text: #f2f4f8;
+      --rm-text-body: #c3c9d4;
+      --rm-text-muted: #838a98;
+      --rm-radius: 12px;
+      --rm-content-width: 1100px;
+    }
+
+    [data-theme="light"] {
+      --rm-bg: #f5f4ef;
+      --rm-surface: #ffffff;
+      --rm-surface-elevated: #eae8e1;
+      --rm-surface-muted: #eeece5;
+      --rm-border: rgba(0, 0, 0, 0.08);
+      --rm-border-strong: rgba(0, 0, 0, 0.18);
+      --rm-accent: #b45309;
+      --rm-accent-soft: rgba(180, 83, 9, 0.08);
+      --rm-accent-border: rgba(180, 83, 9, 0.25);
+      --rm-text: #14171a;
+      --rm-text-body: #3c424a;
+      --rm-text-muted: #6b7280;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--rm-bg);
+      color: var(--rm-text-body);
+    }
+
+    body {
+      margin: 0;
+      background: var(--rm-bg);
+      color: var(--rm-text-body);
+      font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Top Navigation Header */
+    .rm-top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(16, 19, 25, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rm-border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    [data-theme="light"] .rm-top-nav {
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .rm-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--rm-text);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .rm-brand-badge {
+      background: var(--rm-accent);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .rm-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .page-shell {
+      width: min(calc(100% - 32px), var(--rm-content-width));
+      margin: 0 auto;
+    }
+
+    header.rm-header {
+      padding: 56px 0 36px;
+      border-bottom: 1px solid var(--rm-border);
+      position: relative;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--rm-accent);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rm-accent);
+      box-shadow: 0 0 8px var(--rm-accent);
+      animation: pulse-dot 2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    h1.rm-title {
+      max-width: 840px;
+      margin: 0;
+      font-family: var(--font-editorial, 'Outfit', serif);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--rm-text);
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 18px 0 0;
+      color: var(--rm-text-body);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    .roadmap-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .meta-item {
+      padding: 6px 14px;
+      border: 1px solid var(--rm-border-strong);
+      border-radius: 999px;
+      background: var(--rm-surface-elevated);
+      color: var(--rm-text-muted);
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta-item.highlight {
+      border-color: var(--rm-accent-border);
+      color: var(--rm-accent);
+      background: var(--rm-accent-soft);
+    }
+
+    /* Layout Main */
+    main.rm-layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 48px;
+      padding: 40px 0 80px;
+    }
+
+    /* Sticky Sidebar Navigation */
+    nav.rm-nav {
+      position: sticky;
+      top: 80px;
+      align-self: start;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    nav.rm-nav p {
+      margin: 0 0 12px;
+      color: var(--rm-text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    nav.rm-nav ol {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    nav.rm-nav a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 10px;
+      color: var(--rm-text-muted);
+      font-size: 0.88rem;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 150ms ease;
+      font-family: var(--font-sans);
+    }
+
+    nav.rm-nav a:hover,
+    nav.rm-nav a:focus-visible {
+      color: var(--rm-text);
+      background: var(--rm-surface-elevated);
+      transform: translateX(3px);
+    }
+
+    nav.rm-nav a.active-stage-link {
+      color: var(--rm-accent);
+      background: var(--rm-accent-soft);
+      font-weight: 600;
+      border-left: 2px solid var(--rm-accent);
+    }
+
+    /* Roadmap Timeline */
+    .roadmap {
+      position: relative;
+    }
+
+    .roadmap::before {
+      position: absolute;
+      top: 24px;
+      bottom: 24px;
+      left: 23px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--rm-accent), var(--rm-border-strong), var(--rm-border));
+      content: "";
+    }
+
+    .stage {
+      position: relative;
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 22px;
+      padding-bottom: 36px;
+      scroll-margin-top: 90px;
+      transition: transform 0.2s ease;
+    }
+
+    .stage:last-child {
+      padding-bottom: 0;
+    }
+
+    .stage-number {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border: 1px solid var(--rm-border-strong);
+      border-radius: 50%;
+      background: var(--rm-surface-elevated);
+      color: var(--rm-accent);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .stage:hover .stage-number {
+      background: var(--rm-accent);
+      color: #000;
+      border-color: var(--rm-accent);
+      transform: scale(1.06);
+    }
+
+    .stage-card {
+      padding: 24px 28px;
+      border: 1px solid var(--rm-border);
+      border-radius: var(--rm-radius);
+      background: var(--rm-surface);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .stage:hover .stage-card {
+      border-color: var(--rm-border-strong);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    /* Target / Highlighted Stage (e.g. #stl) */
+    .stage:target .stage-card {
+      border-color: var(--rm-accent);
+      box-shadow: 0 0 0 2px var(--rm-accent-soft), 0 12px 36px rgba(226, 160, 63, 0.15);
+      animation: target-glow 2s ease-in-out infinite alternate;
+    }
+
+    .stage:target .stage-number {
+      background: var(--rm-accent);
+      color: #000;
+      border-color: var(--rm-accent);
+      box-shadow: 0 0 16px var(--rm-accent);
+    }
+
+    @keyframes target-glow {
+      from { border-color: var(--rm-accent); }
+      to { border-color: rgba(226, 160, 63, 0.6); }
+    }
+
+    .stage-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--rm-border);
+    }
+
+    .stage-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--font-editorial, 'Outfit', serif);
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--rm-text);
+    }
+
+    .duration {
+      flex: none;
+      color: var(--rm-accent);
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      background: var(--rm-accent-soft);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--rm-accent-border);
+    }
+
+    .stage-goal {
+      margin: 14px 0 18px;
+      color: var(--rm-text-body);
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 24px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .topics li {
+      position: relative;
+      padding-left: 20px;
+      font-size: 0.92rem;
+      color: var(--rm-text-body);
+    }
+
+    .topics li::before {
+      position: absolute;
+      top: 0.6em;
+      left: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--rm-accent);
+      content: "";
+    }
+
+    .checkpoint {
+      margin: 20px 0 0;
+      padding: 12px 16px;
+      border-left: 3px solid var(--rm-accent);
+      background: var(--rm-accent-soft);
+      color: var(--rm-text);
+      font-size: 0.88rem;
+      border-radius: 0 6px 6px 0;
+      line-height: 1.5;
+    }
+
+    .checkpoint strong {
+      color: var(--rm-accent);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    footer.rm-footer {
+      padding: 36px 0 60px;
+      border-top: 1px solid var(--rm-border);
+      color: var(--rm-text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer strong {
+      color: var(--rm-text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 820px) {
+      main.rm-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      nav.rm-nav {
+        position: static;
+        max-height: none;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--rm-border);
+      }
+
+      nav.rm-nav ol {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 4px 12px;
+      }
+
+      .topics {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .stage {
+        grid-template-columns: 38px minmax(0, 1fr);
+        gap: 12px;
+      }
+
+      .roadmap::before {
+        left: 18px;
+      }
+
+      .stage-number {
+        width: 38px;
+        height: 38px;
+        font-size: 0.85rem;
+      }
+
+      .stage-card {
+        padding: 18px 16px;
+      }
+
+      .stage-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      nav.rm-nav ol {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Technical Header -->
+  <div class="rm-top-nav">
+    <a href="../index.html#dsa" class="rm-brand">
+      <span class="rm-brand-badge">CSE OS</span>
+      <span>← BACK TO ENGINEERING OS</span>
+    </a>
+    <div class="rm-nav-actions">
+      <a href="../index.html#roadmap" class="btn-tech btn-tech-secondary" style="font-size:0.75rem; text-decoration:none;">
+        SCHEMATIC VIEW
+      </a>
+      <button id="rm-theme-toggle" class="btn-icon-header" title="Toggle Theme" style="cursor:pointer;">
+        ◐
+      </button>
+    </div>
+  </div>
+
+  <header class="rm-header">
+    <div class="page-shell">
+      <p class="eyebrow">Engineering Curriculum · C++ to Advanced</p>
+      <h1 class="rm-title">Data Structures &amp; Algorithms Roadmap</h1>
+      <p class="intro">
+        A structured, capability-driven sequence from writing rigorous C++ programs to solving advanced graph and dynamic programming problems. Learn each stage, understand space-time complexities, practice deliberate problem patterns, then advance.
+      </p>
+      <div class="roadmap-meta" aria-label="Roadmap summary">
+        <span class="meta-item highlight">12 STAGES</span>
+        <span class="meta-item">BEGINNER → ADVANCED</span>
+        <span class="meta-item">CONCEPTS + PRACTICE</span>
+        <span class="meta-item">PACE: 6–8 MONTHS</span>
+        <span class="meta-item" style="color:var(--status-completed);">● VERIFIED CSE BLUEPRINT</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell rm-layout">
+    <nav class="rm-nav" aria-label="Roadmap contents">
+      <p>■ INDEX / STAGES</p>
+      <ol id="stages-nav-list">
+        <li><a href="#cpp-basics">01 · C++ Basics</a></li>
+        <li><a href="#stl" class="active-stage-link">02 · STL [Standard Lib]</a></li>
+        <li><a href="#math-recursion">03 · Math &amp; Recursion</a></li>
+        <li><a href="#sorting-searching">04 · Sorting &amp; Searching</a></li>
+        <li><a href="#arrays-strings">05 · Arrays &amp; Strings</a></li>
+        <li><a href="#linked-lists">06 · Linked Lists</a></li>
+        <li><a href="#stacks-queues">07 · Stacks &amp; Queues</a></li>
+        <li><a href="#trees">08 · Trees</a></li>
+        <li><a href="#graphs">09 · Graphs</a></li>
+        <li><a href="#greedy">10 · Greedy</a></li>
+        <li><a href="#dynamic-programming">11 · Dynamic Programming</a></li>
+        <li><a href="#advanced">12 · Advanced Topics</a></li>
+      </ol>
+    </nav>
+
+    <div class="roadmap">
+      <!-- 01 C++ Basics -->
+      <section class="stage" id="cpp-basics">
+        <div class="stage-number">01</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>C++ Basics</h2>
+            </div>
+            <span class="duration">1–2 weeks</span>
+          </div>
+          <p class="stage-goal">Build clean programming fundamentals and memory awareness before touching complex data structures.</p>
+          <ul class="topics">
+            <li>Variables, data types and operators</li>
+            <li>Conditions, loops and patterns</li>
+            <li>Functions and parameter passing (value, pointer, reference)</li>
+            <li>Arrays, strings and pointers arithmetic</li>
+            <li>References and stack/heap memory basics</li>
+            <li>Classes, objects and basic OOP encapsulation</li>
+            <li>Time and space complexity (Big-O asymptotic notation)</li>
+            <li>Fast I/O, output formatting and debugging techniques</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Write small programs confidently and accurately estimate simple Big-O runtime & memory space.</p>
+        </div>
+      </section>
+
+      <!-- 02 STL -->
+      <section class="stage" id="stl">
+        <div class="stage-number">02</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Standard Template Library (STL)</h2>
+            </div>
+            <span class="duration">1–2 weeks</span>
+          </div>
+          <p class="stage-goal">Use battle-tested containers, iterators, and generic algorithms instead of reinventing standard data structures.</p>
+          <ul class="topics">
+            <li><code>std::vector</code>, <code>std::array</code>, <code>std::pair</code> and <code>std::tuple</code></li>
+            <li><code>std::set</code>, <code>std::multiset</code> and <code>std::unordered_set</code></li>
+            <li><code>std::map</code>, <code>std::multimap</code> and <code>std::unordered_map</code></li>
+            <li><code>std::stack</code>, <code>std::queue</code>, <code>std::deque</code> and <code>std::priority_queue</code></li>
+            <li>Iterators, reverse iterators and custom comparators</li>
+            <li><code>std::sort</code>, <code>std::lower_bound</code> and <code>std::upper_bound</code></li>
+            <li>Lambda expressions & functor objects</li>
+            <li>Internal complexity guarantees (hash collisions, red-black tree amortized costs)</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Choose the optimal container effortlessly and explain the exact amortized cost of every operation.</p>
+        </div>
+      </section>
+
+      <!-- 03 Math & Recursion -->
+      <section class="stage" id="math-recursion">
+        <div class="stage-number">03</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Math &amp; Recursion</h2>
+            </div>
+            <span class="duration">2 weeks</span>
+          </div>
+          <p class="stage-goal">Develop inductive reasoning, recursive decomposition, and fundamental mathematical tools used throughout advanced DSA.</p>
+          <ul class="topics">
+            <li>Digits, divisors, prime factorization and prime checks</li>
+            <li>GCD, LCM and Euclidean algorithm</li>
+            <li>Sieve of Eratosthenes (O(N log log N))</li>
+            <li>Modular arithmetic basics, modular exponentiation & inverse</li>
+            <li>Recursion trees, call stack depth and space overhead</li>
+            <li>Subsequences, subsets and combinations generation</li>
+            <li>Backtracking with state unwinding and branch pruning</li>
+            <li>Classic problems: N-Queens, Sudoku Solver, Word Search</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Define crystal-clear base cases and trace recursive state transitions on paper without guessing.</p>
+        </div>
+      </section>
+
+      <!-- 04 Sorting & Searching -->
+      <section class="stage" id="sorting-searching">
+        <div class="stage-number">04</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Sorting &amp; Searching</h2>
+            </div>
+            <span class="duration">2 weeks</span>
+          </div>
+          <p class="stage-goal">Learn the core techniques behind ordering data, partitioning search spaces, and binary predicate reduction.</p>
+          <ul class="topics">
+            <li>Selection, bubble and insertion sort mechanics</li>
+            <li>Merge sort (divide & conquer) and Quick sort (pivot partitioning)</li>
+            <li>Counting sort & Radix sort linear bounds</li>
+            <li>Binary search invariant templates (left/right bounds)</li>
+            <li>First and last occurrence in sorted arrays</li>
+            <li>Search on Answer (monotonic predicate spaces)</li>
+            <li>Rotated sorted arrays search and peak finding</li>
+            <li>2D matrix binary search (row/column monotonic matrices)</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Recognise monotonic predicate spaces instantly and write bug-free binary search with zero off-by-one errors.</p>
+        </div>
+      </section>
+
+      <!-- 05 Arrays & Strings -->
+      <section class="stage" id="arrays-strings">
+        <div class="stage-number">05</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Arrays &amp; Strings</h2>
+            </div>
+            <span class="duration">3–4 weeks</span>
+          </div>
+          <p class="stage-goal">Master the contiguous memory patterns and sliding window heuristics that appear most frequently in interview rounds.</p>
+          <ul class="topics">
+            <li>Hashing and frequency counting tables</li>
+            <li>Two pointers (converging and parallel pointer movements)</li>
+            <li>Sliding window (fixed size and dynamic shrink/expand window)</li>
+            <li>Prefix sums and difference arrays (range update in O(1))</li>
+            <li>Kadane's algorithm for maximum subarray sum</li>
+            <li>Interval merging, overlapping, and insert operations</li>
+            <li>Majority element (Boyer-Moore Voting) and Dutch National Flag</li>
+            <li>String matching fundamentals, palindromes, and anagrams</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Categorize any medium array problem into two-pointers, prefix sum, or sliding window within 90 seconds.</p>
+        </div>
+      </section>
+
+      <!-- 06 Linked Lists -->
+      <section class="stage" id="linked-lists">
+        <div class="stage-number">06</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Linked Lists</h2>
+            </div>
+            <span class="duration">1–2 weeks</span>
+          </div>
+          <p class="stage-goal">Attain complete fluency with pointer redirection, node referencing, and in-place structural mutation.</p>
+          <ul class="topics">
+            <li>Singly and doubly linked lists creation & memory layout</li>
+            <li>Iterative and recursive node insertion, deletion, and reversal</li>
+            <li>Fast and slow pointers (Floyd's Tortoise and Hare)</li>
+            <li>Cycle detection and cycle starting node calculation</li>
+            <li>Middle node and N-th node from end of list</li>
+            <li>Merge K sorted linked lists</li>
+            <li>Intersection point of two linked lists</li>
+            <li>Deep copy clone of linked list with random pointers</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Diagram pointer modifications prior to coding and never create memory leaks or lose head access.</p>
+        </div>
+      </section>
+
+      <!-- 07 Stacks & Queues -->
+      <section class="stage" id="stacks-queues">
+        <div class="stage-number">07</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Stacks &amp; Queues</h2>
+            </div>
+            <span class="duration">2 weeks</span>
+          </div>
+          <p class="stage-goal">Deploy order-sensitive structures for expression evaluation, monotonic range tracking, and streaming buffers.</p>
+          <ul class="topics">
+            <li>Array and dynamic list implementations of LIFO/FIFO buffers</li>
+            <li>Balanced parentheses validation and nested expression parsing</li>
+            <li>Infix, prefix and postfix evaluation & conversions</li>
+            <li>Monotonic stack and monotonic queue paradigms</li>
+            <li>Next Greater Element, Next Smaller Element (O(N) amortized)</li>
+            <li>Largest rectangle in histogram and maximal rectangle in matrix</li>
+            <li>Sliding window maximum using monotonic deque</li>
+            <li>LRU Cache design using Doubly Linked List + Hash Map</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Spot immediately when monotonic monotonicity eliminates quadratic nested scans.</p>
+        </div>
+      </section>
+
+      <!-- 08 Trees -->
+      <section class="stage" id="trees">
+        <div class="stage-number">08</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Trees &amp; Binary Search Trees</h2>
+            </div>
+            <span class="duration">4 weeks</span>
+          </div>
+          <p class="stage-goal">Master hierarchical data organization, recursive traversals, and self-balancing BST properties.</p>
+          <ul class="topics">
+            <li>Binary tree pointer representation & node structure</li>
+            <li>DFS (Inorder, Preorder, Postorder - recursive & iterative)</li>
+            <li>BFS level-order traversal with queue level delimitation</li>
+            <li>Height, diameter, and balance condition (AVL invariants)</li>
+            <li>Top view, bottom view, left view, and boundary traversal</li>
+            <li>Lowest Common Ancestor (LCA) in BT and BST</li>
+            <li>Serialize and deserialize binary tree schemas</li>
+            <li>Heaps, min-heap/max-heap properties and heapify algorithm</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Implement iterative tree traversals with explicit stacks and solve any tree recursion problem bottom-up.</p>
+        </div>
+      </section>
+
+      <!-- 09 Graphs -->
+      <section class="stage" id="graphs">
+        <div class="stage-number">09</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Graphs</h2>
+            </div>
+            <span class="duration">4–5 weeks</span>
+          </div>
+          <p class="stage-goal">Model complex relational topologies and execute optimal pathfinding, traversal, and connectivity algorithms.</p>
+          <ul class="topics">
+            <li>Adjacency list, adjacency matrix and memory considerations</li>
+            <li>BFS, DFS and connected component coloring</li>
+            <li>Cycle detection in undirected and directed graphs (Kahn's & DFS coloring)</li>
+            <li>Topological sorting (Kahn's BFS algorithm and DFS stack)</li>
+            <li>Dijkstra's shortest path (non-negative weighted graphs)</li>
+            <li>Bellman-Ford algorithm (negative weights & negative cycle detection)</li>
+            <li>Floyd-Warshall all-pairs shortest path</li>
+            <li>Disjoint Set Union (DSU / Union-Find) with path compression & rank</li>
+            <li>Minimum Spanning Trees (Kruskal's & Prim's algorithms)</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Identify instantly whether graph topology is directed, DAG, weighted, or bipartite before choosing an algorithm.</p>
+        </div>
+      </section>
+
+      <!-- 10 Greedy -->
+      <section class="stage" id="greedy">
+        <div class="stage-number">10</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Greedy Algorithms</h2>
+            </div>
+            <span class="duration">2 weeks</span>
+          </div>
+          <p class="stage-goal">Learn when a locally optimal choice guarantees a globally optimal solution and how to formulate exchange arguments.</p>
+          <ul class="topics">
+            <li>Activity selection and interval scheduling</li>
+            <li>Non-overlapping interval minimization and merging</li>
+            <li>Fractional Knapsack vs 0/1 Knapsack distinction</li>
+            <li>Job sequencing with deadlines and profit maximization</li>
+            <li>Minimum platforms required for railway schedules</li>
+            <li>Huffman coding & prefix-free optimal encoding</li>
+            <li>Proof by exchange argument (Greedy Choice Property)</li>
+            <li>Greedy versus Dynamic Programming decision criteria</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Formally justify greedy optimality with an exchange argument instead of relying on gut feel.</p>
+        </div>
+      </section>
+
+      <!-- 11 Dynamic Programming -->
+      <section class="stage" id="dynamic-programming">
+        <div class="stage-number">11</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Dynamic Programming</h2>
+            </div>
+            <span class="duration">5–6 weeks</span>
+          </div>
+          <p class="stage-goal">Transform overlapping subproblems and optimal substructure into ordered state transition matrices.</p>
+          <ul class="topics">
+            <li>Memoization (Top-Down) vs Tabulation (Bottom-Up) paradigms</li>
+            <li>1D State DP: Climbing stairs, Frog jump, House robber</li>
+            <li>0/1 Knapsack, Unbounded Knapsack, and Subset Sum DP</li>
+            <li>Longest Common Subsequence (LCS) and Edit Distance</li>
+            <li>Longest Increasing Subsequence (LIS) in O(N log N) with binary search</li>
+            <li>Grid DP: Unique paths, Minimum path sum, Triangle</li>
+            <li>Matrix Chain Multiplication (MCM) & Partition DP</li>
+            <li>DP on Trees, DP on Bitmasks, and Space Optimization techniques</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> State the exact state definition, base cases, transition formula, and iteration order before touching code.</p>
+        </div>
+      </section>
+
+      <!-- 12 Advanced Topics -->
+      <section class="stage" id="advanced">
+        <div class="stage-number">12</div>
+        <div class="stage-card">
+          <div class="stage-heading">
+            <div class="stage-title-wrap">
+              <h2>Advanced Topics &amp; Data Structures</h2>
+            </div>
+            <span class="duration">Ongoing</span>
+          </div>
+          <p class="stage-goal">Deploy specialized tree and string structures for high-performance competitive programming and specialized systems engineering.</p>
+          <ul class="topics">
+            <li>Tries, prefix trees and bitwise XOR tries</li>
+            <li>Segment Trees with point updates and range query evaluation</li>
+            <li>Lazy propagation for range updates in O(log N)</li>
+            <li>Fenwick Trees (Binary Indexed Tree / BIT) for prefix updates</li>
+            <li>KMP (Knuth-Morris-Pratt) algorithm and Z-Algorithm string search</li>
+            <li>Rabin-Karp rolling hash & polynomial hash invariants</li>
+            <li>Strongly Connected Components (Kosaraju's & Tarjan's algorithms)</li>
+            <li>Bridges and articulation points in graphs</li>
+            <li>Binary Lifting and Lowest Common Ancestor in O(log N)</li>
+          </ul>
+          <p class="checkpoint"><strong>Checkpoint:</strong> Select advanced data structures only when constraints make classical structures mathematically insufficient.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="rm-footer">
+    <div class="page-shell">
+      <strong>How to execute this roadmap:</strong> Understand the concept thoroughly → Implement the core structure from scratch → Solve 5-10 standard easy/medium problems → Analyze edge cases & complexity bounds. Revisit previous stages systematically every weekend.
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle handling
+    const themeBtn = document.getElementById('rm-theme-toggle');
+    const savedTheme = localStorage.getItem('cse_os_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('cse_os_theme', nextTheme);
+      });
+    }
+
+    // Scroll spy for sidebar links
+    const stages = document.querySelectorAll('.stage');
+    const navLinks = document.querySelectorAll('#stages-nav-list a');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${id}`) {
+              link.classList.add('active-stage-link');
+            } else {
+              link.classList.remove('active-stage-link');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    stages.forEach(stage => observer.observe(stage));
+  </script>
+</body>
+</html>

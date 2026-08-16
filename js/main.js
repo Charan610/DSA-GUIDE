@@ -539,7 +539,8 @@ window.CareerOS = (function () {
         </ul>
       </div>
 
-      <div style="display:flex; justify-content:flex-end; gap:0.75rem;">
+      <div style="display:flex; justify-content:flex-end; gap:0.75rem; flex-wrap:wrap;">
+        ${node.id === 'node-dsa' ? `<a href="dsa/roadmap.html" target="_blank" rel="noopener noreferrer" class="btn-tech btn-tech-secondary" style="text-decoration:none;">🗺️ 12-STAGE ROADMAP ↗</a>` : ''}
         <button id="node-modal-action-btn" class="btn-tech btn-tech-primary">OPEN SPEC HUB →</button>
       </div>
     `;
@@ -560,6 +561,8 @@ window.CareerOS = (function () {
         window.location.hash = 'dev';
       } else if (node.id === 'node-projects') {
         window.location.hash = 'projects';
+      } else if (node.id === 'node-interview') {
+        window.location.hash = 'companies';
       } else {
         window.location.hash = 'overview';
       }
@@ -860,6 +863,8 @@ window.CareerOS = (function () {
     { label: '01 GO TO OVERVIEW DASHBOARD', action: () => window.location.hash = 'overview' },
     { label: '02 OPEN SCHEMATIC BLUEPRINT', action: () => window.location.hash = 'roadmap' },
     { label: '03 DSA PRACTICE & TELEMETRY', action: () => window.location.hash = 'dsa' },
+    { label: '🗺️ LAUNCH 12-STAGE C++ & DSA ROADMAP [NEW TAB]', action: () => window.open('dsa/roadmap.html', '_blank') },
+    { label: '⚡ STAGE 02 · C++ STL SPECIFICATION [NEW TAB]', action: () => window.open('dsa/roadmap.html#stl', '_blank') },
     { label: '04 CORE SYSTEMS (DBMS, OS, CN)', action: () => window.location.hash = 'corecs' },
     { label: '05 DEVELOPMENT PROGRESSION', action: () => window.location.hash = 'dev' },
     { label: '06 PROJECT PORTFOLIO HUB', action: () => window.location.hash = 'projects' },
